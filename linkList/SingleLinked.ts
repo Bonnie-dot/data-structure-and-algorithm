@@ -29,12 +29,12 @@ export default class SingleLinked {
         lastNode.next = node;
     }
 
-    findByValue(data: unknown) {
+    findByValue(node: Node): Node {
         let currentValue = this.head.next;
-        while (currentValue !== null && currentValue.data !== data) {
+        while (currentValue !== null && currentValue !== node) {
             currentValue = currentValue.next;
         }
-        return currentValue === null ? -1 : currentValue;
+        return currentValue === null ? null : currentValue;
     }
 
     /**
@@ -60,5 +60,20 @@ export default class SingleLinked {
             currentValue = currentValue.next;
         }
         return currentValue ? null : currentValue;
+    }
+
+    /**
+     * insert a new node before a given node
+     * @param newNode
+     * @param node
+     */
+    insert(newNode: Node, node: Node) {
+        const previousValue = this.findPreviousValue(node);
+        if (previousValue) {
+            newNode.next = previousValue.next;
+            previousValue.next = newNode;
+        } else {
+            throw new Error('not found node');
+        }
     }
 }
