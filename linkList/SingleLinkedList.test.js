@@ -10,10 +10,20 @@ test('should append a given node ', () => {
     expect(result).toBe('{\"data\":\"head\",\"next\":{\"data\":1,\"next\":null}}')
 });
 
-test('should find a given node',()=>{
+test('should find a given node', () => {
     const singleLinked = new SingleLinked();
     let node = new Node(2);
     singleLinked.append(node);
     const findNode = singleLinked.findByValue(2);
     expect(findNode).toBe(node);
+})
+
+test('should remove a give node', () => {
+    const singleLinked = new SingleLinked();
+    let node = new Node(2);
+    singleLinked.append(node);
+    singleLinked.append(new Node(3))
+    singleLinked.remove(node);
+    const result = singleLinked.display();
+    expect(result).toBe('{\"data\":\"head\",\"next\":{\"data\":3,\"next\":null}}');
 })

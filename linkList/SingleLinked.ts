@@ -36,4 +36,29 @@ export default class SingleLinked {
         }
         return currentValue === null ? -1 : currentValue;
     }
+
+    /**
+     * remove a given node
+     * @param node
+     */
+    remove(node: Node) {
+        const previousNode = this.findPreviousValue(node);
+        if (previousNode) {
+            previousNode.next = previousNode.next.next;
+        } else {
+            throw new Error(`not found ${node}`);
+        }
+    }
+
+    private findPreviousValue(node: Node): Node {
+        let currentValue = this.head;
+        //  check first node
+        if (this.head.next === node) {
+            return currentValue;
+        }
+        while (currentValue.next !== null && currentValue.next.next !== node) {
+            currentValue = currentValue.next;
+        }
+        return currentValue ? null : currentValue;
+    }
 }
