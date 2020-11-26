@@ -76,4 +76,17 @@ export default class SingleLinked {
             throw new Error('not found node');
         }
     }
+
+    reverse() {
+        let previous = null;
+        let currentValue = this.head.next;
+        let next = null;
+        while (currentValue !== null) {
+            next = currentValue.next;
+            currentValue.next = previous;
+            previous = currentValue;
+            currentValue = next;
+        }
+        this.head.next = previous;
+    }
 }
