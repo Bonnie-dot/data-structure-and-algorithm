@@ -49,4 +49,21 @@ describe('test single linked list operation', () => {
         expect(result).toBe('{\"data\":\"head\",\"next\":{\"data\":4,\"next\":{\"data\":3,\"next\":{\"data\":2,\"next\":null}}}}');
     });
 
+    test('should return true when given a single linked list cycle', () => {
+        const singleLinked = new SingleLinked();
+        singleLinked.append(new Node(1));
+        singleLinked.append(new Node(2));
+        let node3 = new Node(3);
+        singleLinked.append(node3);
+        singleLinked.append(new Node(4));
+        singleLinked.append(new Node(5));
+        singleLinked.append(new Node(6));
+        singleLinked.append(new Node(7));
+        let node8 = new Node(8);
+        singleLinked.append(node8);
+        node8.next = node3;
+        const result = singleLinked.checkCycle();
+        expect(result).toBe(true);
+    })
+
 })

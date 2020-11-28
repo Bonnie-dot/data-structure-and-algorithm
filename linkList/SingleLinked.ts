@@ -78,15 +78,28 @@ export default class SingleLinked {
     }
 
     reverse() {
-        let previous = null;
+        //哨兵节点
+        let root = new Node('head');
         let currentValue = this.head.next;
-        let next = null;
         while (currentValue !== null) {
-            next = currentValue.next;
-            currentValue.next = previous;
-            previous = currentValue;
+            const next = currentValue.next;
+            currentValue.next = root.next;
+            root.next = currentValue;
             currentValue = next;
         }
-        this.head.next = previous;
+        this.head = root;
+    }
+
+    checkCycle() {
+        let fast = this.head.next;
+        let slow = this.head;
+        while (fast !== null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow === fast) {
+                return true;
+            }
+        }
+        return fast;
     }
 }
