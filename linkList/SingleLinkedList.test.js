@@ -88,7 +88,7 @@ describe('test single linked list operation', () => {
         });
     })
 
-    test("should delete the penultimate node when call deleteByLastIndex", () => {
+    test('should delete the penultimate node when call deleteByLastIndex', () => {
         const singleLinked = new SingleLinked();
         singleLinked.append(new Node(1));
         singleLinked.append(new Node(2));
@@ -99,5 +99,20 @@ describe('test single linked list operation', () => {
         singleLinked.deleteByLastIndex(4);
         const result = singleLinked.display();
         expect(result).toBe("{\"data\":\"head\",\"next\":{\"data\":1,\"next\":{\"data\":2,\"next\":{\"data\":5,\"next\":{\"data\":6,\"next\":null}}}}}");
+    });
+
+    test('should return middle value when call findMiddleValue', () => {
+        const singleLinked = new SingleLinked();
+        singleLinked.append(new Node(1));
+        singleLinked.append(new Node(2));
+        singleLinked.append(new Node(3));
+        singleLinked.append(new Node(4));
+        singleLinked.append(new Node(5));
+        singleLinked.append(new Node(6));
+        const result = singleLinked.findMiddleValue();
+        expect(result).toEqual({
+            "data": 3,
+            "next": {"data": 4, "next": {"data": 5, "next": {"data": 6, "next": null}}}
+        });
     })
 })

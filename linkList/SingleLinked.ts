@@ -152,4 +152,14 @@ export default class SingleLinked {
         previousValue.next = findValue.next;
         this.reverse();
     }
+    // 参考：https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/lian-biao-de-zhong-jian-jie-dian-by-leetcode-solut/
+    findMiddleValue() {
+        let fast = this.head;
+        let slow = this.head;
+        while (fast.next !== null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
 }
