@@ -75,8 +75,29 @@ describe('test single linked list operation', () => {
         singleLinked2.append(new Node(1));
         singleLinked2.append(new Node(3));
         singleLinked2.append(new Node(4));
-        const result = singleLinked1.mergeSortedList(singleLinked1,singleLinked2);
-        expect(result).toEqual({"data": "head", "next": {"data": 1, "next": {"data": 1, "next": {"data": 2, "next": {"data": 3, "next": {"data": 4, "next": {"data": 4, "next": null}}}}}}});
+        const result = singleLinked1.mergeSortedList(singleLinked1, singleLinked2);
+        expect(result).toEqual({
+            "data": "head",
+            "next": {
+                "data": 1,
+                "next": {
+                    "data": 1,
+                    "next": {"data": 2, "next": {"data": 3, "next": {"data": 4, "next": {"data": 4, "next": null}}}}
+                }
+            }
+        });
     })
 
+    test("should delete the penultimate node when call deleteByLastIndex", () => {
+        const singleLinked = new SingleLinked();
+        singleLinked.append(new Node(1));
+        singleLinked.append(new Node(2));
+        singleLinked.append(new Node(3));
+        singleLinked.append(new Node(4));
+        singleLinked.append(new Node(5));
+        singleLinked.append(new Node(6));
+        singleLinked.deleteByLastIndex(4);
+        const result = singleLinked.display();
+        expect(result).toBe("{\"data\":\"head\",\"next\":{\"data\":1,\"next\":{\"data\":2,\"next\":{\"data\":5,\"next\":{\"data\":6,\"next\":null}}}}}");
+    })
 })

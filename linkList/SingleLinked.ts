@@ -59,7 +59,7 @@ export default class SingleLinked {
         while (currentValue.next !== null && currentValue.next.next !== node) {
             currentValue = currentValue.next;
         }
-        return currentValue ? null : currentValue;
+        return currentValue ? currentValue : null;
     }
 
     /**
@@ -137,5 +137,19 @@ export default class SingleLinked {
             currentRoot.next = currentList1;
         }
         return root;
+    }
+
+    deleteByLastIndex(index: number) {
+        this.reverse();
+        let currentValue = this.head.next;
+        let pos = 1;
+        while (currentValue !== null && pos < index) {
+            currentValue = currentValue.next;
+            pos++;
+        }
+        const findValue = this.findByValue(currentValue);
+        const previousValue = this.findPreviousValue(currentValue);
+        previousValue.next = findValue.next;
+        this.reverse();
     }
 }
