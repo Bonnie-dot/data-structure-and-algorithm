@@ -3,4 +3,4 @@
 所以数组更能便于查找，不利于删除和新增。
 #### 单链表
 ![单链表](../images/single-linked-list.png)
-！[有环链表](../images/single-linked-list-cycle.png)
+![有环链表](../images/single-linked-list-cycle.png)

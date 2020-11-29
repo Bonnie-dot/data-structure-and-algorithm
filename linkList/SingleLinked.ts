@@ -110,4 +110,32 @@ export default class SingleLinked {
     }
 
 
+    mergeSortedList(list1: SingleLinked, list2: SingleLinked) {
+        if (!list1) {
+            return list2;
+        }
+        if (!list2) {
+            return list1;
+        }
+        let root = new Node('head');
+        let currentList1 = list1.head.next;
+        let currentList2 = list2.head.next;
+        let currentRoot = root;
+        while (currentList1 !== null && currentList2 !== null) {
+            if (currentList1.data <= currentList2.data) {
+                currentRoot.next = currentList1;
+                currentList1 = currentList1.next;
+            } else if (currentList1.data > currentList2.data) {
+                currentRoot.next = currentList2;
+                currentList2 = currentList2.next;
+            }
+            currentRoot = currentRoot.next;
+        }
+        if (currentList1 == null) {
+            currentRoot.next = currentList2
+        } else {
+            currentRoot.next = currentList1;
+        }
+        return root;
+    }
 }

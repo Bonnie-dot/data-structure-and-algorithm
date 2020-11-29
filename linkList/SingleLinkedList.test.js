@@ -64,6 +64,19 @@ describe('test single linked list operation', () => {
         node8.next = node3;
         const result = singleLinked.checkCycleStart();
         expect(result).toBe(3);
+    });
+
+    test('should merge sorted linked list when call mergeSortedList', () => {
+        const singleLinked1 = new SingleLinked();
+        singleLinked1.append(new Node(1));
+        singleLinked1.append(new Node(2));
+        singleLinked1.append(new Node(4));
+        const singleLinked2 = new SingleLinked();
+        singleLinked2.append(new Node(1));
+        singleLinked2.append(new Node(3));
+        singleLinked2.append(new Node(4));
+        const result = singleLinked1.mergeSortedList(singleLinked1,singleLinked2);
+        expect(result).toEqual({"data": "head", "next": {"data": 1, "next": {"data": 1, "next": {"data": 2, "next": {"data": 3, "next": {"data": 4, "next": {"data": 4, "next": null}}}}}}});
     })
 
 })
