@@ -90,16 +90,24 @@ export default class SingleLinked {
         this.head = root;
     }
 
-    checkCycle() {
-        let fast = this.head.next;
+    // 参考（https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/）
+    checkCycleStart() {
+        let fast = this.head;
         let slow = this.head;
-        while (fast !== null) {
+        while (fast !== null && fast.next !== null) {
             slow = slow.next;
             fast = fast.next.next;
             if (slow === fast) {
-                return true;
+                break;
             }
         }
-        return fast;
+        fast = this.head;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return fast.data;
     }
+
+
 }

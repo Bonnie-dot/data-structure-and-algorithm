@@ -62,8 +62,8 @@ describe('test single linked list operation', () => {
         let node8 = new Node(8);
         singleLinked.append(node8);
         node8.next = node3;
-        const result = singleLinked.checkCycle();
-        expect(result).toBe(true);
+        const result = singleLinked.checkCycleStart();
+        expect(result).toBe(3);
     })
 
 })
