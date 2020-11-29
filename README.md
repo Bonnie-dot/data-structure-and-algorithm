@@ -24,4 +24,4 @@ JavaScript+TypeScript+Jest
 - npm run test，可以看UT
  
 ### 练习
-- [单链表 CRUD](./linkList/SingleLinked.ts)
+- [单链表 CRUD、单链表反转、链表中环的检测、两个有序的链表合并、删除链表倒数第 n 个结点
