@@ -9,5 +9,7 @@ export default class Stack {
         return this.array;
     }
 
-
+    pop(){
+        this.array.splice(0,1);
+    }
 }
