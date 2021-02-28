@@ -21,6 +21,10 @@ export class Stack {
         lastNode.next = node;
     }
 
+    pop(){
+        const previousNode = this.findPreviousNode(this.findLastNode());
+        previousNode.next=null;
+    }
     getValues() {
        return JSON.stringify(this.head);
     }
@@ -31,5 +35,23 @@ export class Stack {
             currentNode = currentNode.next;
         }
         return currentNode;
+    }
+
+    findPreviousNode(node:Node){
+        let currentValue = this.head;
+        let nextValue=currentValue.next;
+        if (nextValue === node){
+            return currentValue;
+        }
+        while (currentValue.next!==null && nextValue !== node){
+            currentValue=currentValue.next;
+            nextValue=currentValue.next;
+        }
+
+        if (currentValue.next!==null){
+            return currentValue;
+        }else {
+            return null;
+        }
     }
 }
