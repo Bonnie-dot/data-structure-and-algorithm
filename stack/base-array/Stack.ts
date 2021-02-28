@@ -23,10 +23,9 @@ export default class Stack {
     }
 
     pop() {
-        this.count--;
         if(this.count===-1){
-            return false
+            throw new Error('stack is empty');
         }
-        this.array[this.count-1]=undefined;
+        delete this.array[this.count];
     }
 }
