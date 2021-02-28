@@ -19,15 +19,5 @@ describe('test stack with related operation', () => {
         const result = stack.getValues();
         expect(result).toEqual('{\"data\":\"head\",\"next\":{\"data\":\"1\",\"next\":null}}')
     });
-    //
-    // test('should throw new stack overflow error when count is greater than size',()=>{
-    //     const stack = new Stack(1);
-    //     stack.push(1);
-    //     expect(()=>{stack.push(2)}).toThrow('stack overflow error')
-    // });
-    //
-    // test('should throw new empty error when stack is empty',()=>{
-    //     const stack = new Stack(0);
-    //     expect(()=>{stack.pop()}).toThrow('stack is empty')
-    // })
+
 })
