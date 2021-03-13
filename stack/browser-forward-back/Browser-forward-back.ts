@@ -12,6 +12,10 @@ class BrowserForwardBack {
         this.stack.push(new Node(url));
     }
 
+    back(){
+        this.stack.pop();
+    }
+
     getValues(): string {
         return this.stack.getValues();
     }
