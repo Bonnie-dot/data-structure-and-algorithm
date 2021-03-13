@@ -61,4 +61,8 @@ export class Stack {
             return null;
         }
     }
+
+    clearStack () {
+        this.head.next=null;
+    }
 }

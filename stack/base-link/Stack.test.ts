@@ -46,4 +46,14 @@ describe('test stack with related operation', () => {
         expect(result).toEqual(-1)
         expect(stack.getValues()).toEqual("{\"data\":\"head\",\"next\":null}")
     });
+
+    test('should empty when  clear stack',()=>{
+
+        const stack = new Stack();
+        stack.push(new Node('1'));
+        stack.push(new Node('2')) ;
+        stack.clearStack();
+
+        expect(stack.getValues()).toEqual("{\"data\":\"head\",\"next\":null}")
+    });
 })
