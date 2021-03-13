@@ -32,8 +32,18 @@ export class Stack {
         }
     }
 
-    getValues() {
-        return JSON.stringify(this.head);
+    getData() {
+        let currentNode = this.head.next;
+        if (currentNode===null){
+            return null;
+        }
+        const tempArray =[];
+        while (currentNode.next!==null){
+            tempArray.push(currentNode.data);
+            currentNode = currentNode.next;
+        }
+        tempArray.push(currentNode.data);
+        return tempArray.join(',');
     }
 
     findLastNode() {

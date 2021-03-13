@@ -9,8 +9,8 @@ describe('test stack with related operation', () => {
         stack.push(new Node('1'));
         stack.push(new Node('2'));
 
-        const result = stack.getValues();
-        expect(result).toEqual('{\"data\":\"head\",\"next\":{\"data\":\"1\",\"next\":{\"data\":\"2\",\"next\":null}}}')
+        const result = stack.getData();
+        expect(result).toEqual('1,2')
     });
 
     test('should correctly pop when remove new value',()=>{
@@ -20,10 +20,10 @@ describe('test stack with related operation', () => {
         let node = new Node('2');
         stack.push(node);
         const result = stack.pop();
-        stack.getValues();
+        stack.getData();
 
         expect(result).toEqual(node);
-        expect(stack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"1\",\"next\":null}}");
+        expect(stack.getData()).toEqual('1');
     });
 
     test('should return -1 when pop in a empty stack',()=>{
@@ -44,7 +44,7 @@ describe('test stack with related operation', () => {
        const result = stack.pop()
 
         expect(result).toEqual(-1)
-        expect(stack.getValues()).toEqual("{\"data\":\"head\",\"next\":null}")
+        expect(stack.getData()).toEqual(null);
     });
 
     test('should empty when  clear stack',()=>{
@@ -54,6 +54,6 @@ describe('test stack with related operation', () => {
         stack.push(new Node('2')) ;
         stack.clearStack();
 
-        expect(stack.getValues()).toEqual("{\"data\":\"head\",\"next\":null}")
+        expect(stack.getData()).toEqual(null)
     });
 })

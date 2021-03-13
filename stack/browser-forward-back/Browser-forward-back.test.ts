@@ -2,24 +2,24 @@ import BrowserForwardBack from "./Browser-forward-back";
 
 describe('mock browser forward and back behavior',()=>{
 
-    it('should forward successfully when given some url', function () {
+    it('should forward successfully when given a', function () {
 
         const browserForwardBack = new BrowserForwardBack();
-        browserForwardBack.forward('http://baidu1.com');
-        browserForwardBack.forward('http://baidu2.com');
+        browserForwardBack.forward('a');
+        browserForwardBack.forward('b');
 
-        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":{\"data\":\"http://baidu2.com\",\"next\":null}}}");
+        expect(browserForwardBack.getValues()).toEqual('a,b');
     });
 
     it('should back successfully when back', function () {
 
         const browserForwardBack = new BrowserForwardBack();
-        browserForwardBack.forward('http://baidu1.com');
-        browserForwardBack.forward('http://baidu2.com');
+        browserForwardBack.forward('a');
+        browserForwardBack.forward('b');
         browserForwardBack.back();
 
-        expect(browserForwardBack.getBackValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu2.com\",\"next\":null}}");
-        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":null}}");
+        expect(browserForwardBack.getBackValues()).toEqual('b');
+        expect(browserForwardBack.getValues()).toEqual('a');
     });
 
     it('should back b when forward a,b,c,and back b,and forward d', function () {
@@ -32,7 +32,7 @@ describe('mock browser forward and back behavior',()=>{
         browserForwardBack.forward('d');
         browserForwardBack.back();
 
-        expect(browserForwardBack.getBackValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"d\",\"next\":null}}");
-        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"a\",\"next\":{\"data\":\"b\",\"next\":null}}}");
+        expect(browserForwardBack.getBackValues()).toEqual('d');
+        expect(browserForwardBack.getValues()).toEqual('a,b');
     });
 });

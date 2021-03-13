@@ -26,11 +26,11 @@ class BrowserForwardBack {
     }
 
     getValues(): string {
-        return this.stack.getValues();
+        return this.stack.getData();
     }
 
     getBackValues(): string {
-        return this.backStack.getValues();
+        return this.backStack.getData();
     }
 }
 
