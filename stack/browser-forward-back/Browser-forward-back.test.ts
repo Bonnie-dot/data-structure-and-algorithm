@@ -2,7 +2,7 @@ import BrowserForwardBack from "./Browser-forward-back";
 
 describe('mock browser forward and back behavior',()=>{
 
-    it('should forward successfully when given some value', function () {
+    it('should forward successfully when given some url', function () {
         const browserForwardBack = new BrowserForwardBack();
         browserForwardBack.forward('http://baidu1.com');
         browserForwardBack.forward('http://baidu2.com');
