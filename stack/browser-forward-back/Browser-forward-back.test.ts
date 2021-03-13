@@ -20,4 +20,16 @@ describe('mock browser forward and back behavior',()=>{
 
         expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":null}}");
     });
+
+    it('should forward c successed when forward a,b,c,and back b', function () {
+
+        const browserForwardBack = new BrowserForwardBack();
+        browserForwardBack.forward('a');
+        browserForwardBack.forward('b');
+        browserForwardBack.forward('c');
+        browserForwardBack.back();
+        browserForwardBack.back();
+
+        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":null}}");
+    });
 });

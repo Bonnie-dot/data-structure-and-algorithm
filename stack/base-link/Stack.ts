@@ -1,6 +1,6 @@
 export class Node {
 
-    data:string;
+    data: string;
     next: Node;
 
     constructor(data: string) {
@@ -16,17 +16,24 @@ export class Stack {
     constructor() {
     }
 
-    push(node:Node) {
+    push(node: Node) {
         const lastNode = this.findLastNode();
         lastNode.next = node;
     }
 
-    pop(){
+    pop() {
         const previousNode = this.findPreviousNode(this.findLastNode());
-        previousNode.next=null;
+        if (previousNode) {
+            const popValue = previousNode.next;
+            previousNode.next = null;
+            return popValue;
+        } else {
+            return -1;
+        }
     }
+
     getValues() {
-       return JSON.stringify(this.head);
+        return JSON.stringify(this.head);
     }
 
     findLastNode() {
@@ -37,20 +44,20 @@ export class Stack {
         return currentNode;
     }
 
-    findPreviousNode(node:Node){
+    findPreviousNode(node: Node) {
         let currentValue = this.head;
-        let nextValue=currentValue.next;
-        if (nextValue === node){
+        let nextValue = currentValue.next;
+        if (nextValue === node) {
             return currentValue;
         }
-        while (currentValue.next!==null && nextValue !== node){
-            currentValue=currentValue.next;
-            nextValue=currentValue.next;
+        while (currentValue.next !== null && nextValue !== node) {
+            currentValue = currentValue.next;
+            nextValue = currentValue.next;
         }
 
-        if (currentValue.next!==null){
+        if (currentValue.next !== null) {
             return currentValue;
-        }else {
+        } else {
             return null;
         }
     }
