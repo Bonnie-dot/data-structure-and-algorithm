@@ -18,18 +18,21 @@ describe('mock browser forward and back behavior',()=>{
         browserForwardBack.forward('http://baidu2.com');
         browserForwardBack.back();
 
+        expect(browserForwardBack.getBackValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu2.com\",\"next\":null}}");
         expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":null}}");
     });
 
-    it('should forward c successed when forward a,b,c,and back b', function () {
+    it('should back b when forward a,b,c,and back b,and forward d', function () {
 
         const browserForwardBack = new BrowserForwardBack();
         browserForwardBack.forward('a');
         browserForwardBack.forward('b');
         browserForwardBack.forward('c');
         browserForwardBack.back();
+        browserForwardBack.forward('d');
         browserForwardBack.back();
 
-        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"http://baidu1.com\",\"next\":null}}");
+        expect(browserForwardBack.getBackValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"d\",\"next\":null}}");
+        expect(browserForwardBack.getValues()).toEqual("{\"data\":\"head\",\"next\":{\"data\":\"a\",\"next\":{\"data\":\"b\",\"next\":null}}}");
     });
 });
