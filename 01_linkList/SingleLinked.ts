@@ -1,4 +1,4 @@
-import Node from './Node';
+import Node from '../common/Node';
 
 export default class SingleLinked {
 
@@ -16,8 +16,18 @@ export default class SingleLinked {
         return currentValue
     }
 
-    display() {
-        return JSON.stringify(this.head);
+    getData() {
+        let currentNode = this.head.next;
+        if (currentNode===null){
+            return null;
+        }
+        const tempArray =[];
+        while (currentNode.next!==null){
+            tempArray.push(currentNode.data);
+            currentNode = currentNode.next;
+        }
+        tempArray.push(currentNode.data);
+        return tempArray.join(',');
     }
 
     /**
