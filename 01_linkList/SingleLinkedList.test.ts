@@ -1,6 +1,7 @@
 import SingleLinked from "./SingleLinked";
 import {describe, test} from "@jest/globals";
 import Node from '../common/Node';
+import {Stack} from "../02_stack/stack-link/Stack";
 
 describe('test single linked list operation', () => {
     test('should append a given node ', () => {
@@ -103,5 +104,15 @@ describe('test single linked list operation', () => {
         singleLinked.append(new Node('6'));
         const result = singleLinked.findMiddleValue();
         expect(result).toEqual({"data": "3", "next": {"data": "4", "next": {"data": "5", "next": {"data": "6", "next": null}}}});
-    })
+    });
+
+    test('should empty when  clear link',()=>{
+
+        const singleLinked = new SingleLinked();
+        singleLinked.append(new Node('1'));
+        singleLinked.append(new Node('2')) ;
+        singleLinked.clearLink();
+
+        expect(singleLinked.getData()).toEqual(null)
+    });
 })

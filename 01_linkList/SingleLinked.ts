@@ -8,7 +8,7 @@ export default class SingleLinked {
         this.head = new Node('head');
     }
 
-    private findLastNode(): Node {
+     findLastNode(): Node {
         let currentValue: Node = this.head;
         while (currentValue.next !== null) {
             currentValue = currentValue.next;
@@ -171,5 +171,27 @@ export default class SingleLinked {
             slow = slow.next;
         }
         return slow;
+    }
+
+    findPreviousNode(node: Node) {
+        let currentValue = this.head;
+        let nextValue = currentValue.next;
+        if (nextValue === node) {
+            return currentValue;
+        }
+        while (currentValue.next !== null && nextValue !== node) {
+            currentValue = currentValue.next;
+            nextValue = currentValue.next;
+        }
+
+        if (currentValue.next !== null) {
+            return currentValue;
+        } else {
+            return null;
+        }
+    }
+
+    clearLink() {
+        this.head.next = null;
     }
 }
