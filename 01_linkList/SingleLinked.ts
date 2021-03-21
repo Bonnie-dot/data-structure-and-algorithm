@@ -16,6 +16,11 @@ export default class SingleLinked {
         return currentValue
     }
 
+    removeFirstNode() {
+        const firstValue = this.head.next;
+        this.head.next = firstValue.next;
+    }
+
     getData() {
         let currentNode = this.head.next;
         if (currentNode===null){

@@ -106,7 +106,7 @@ describe('test single linked list operation', () => {
         expect(result).toEqual({"data": "3", "next": {"data": "4", "next": {"data": "5", "next": {"data": "6", "next": null}}}});
     });
 
-    test('should empty when  clear link',()=>{
+    test('should empty when clear link',()=>{
 
         const singleLinked = new SingleLinked();
         singleLinked.append(new Node('1'));
@@ -115,4 +115,13 @@ describe('test single linked list operation', () => {
 
         expect(singleLinked.getData()).toEqual(null)
     });
+
+    test('should remove first node when call `removeFirstNode`',()=>{
+        const singleLinked = new SingleLinked();
+        singleLinked.append(new Node('1'));
+        singleLinked.append(new Node('2'));
+        singleLinked.removeFirstNode();
+        const result = singleLinked.getData();
+        expect(result).toEqual('2');
+    })
 })
