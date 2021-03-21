@@ -17,8 +17,7 @@ export default class SingleLinked {
     }
 
     removeFirstNode() {
-        const firstValue = this.head.next;
-        this.head.next = firstValue.next;
+        this.head.next = this.head.next.next;
     }
 
     getData() {

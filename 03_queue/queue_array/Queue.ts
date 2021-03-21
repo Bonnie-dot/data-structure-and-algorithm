@@ -1,5 +1,8 @@
 export default class Queue {
 
+    // In javascript, we can init array without size.
+    // If you have fixed array, you can consider totally move
+    // array data when array length is size and the start is empty.
     private array: Array<number> = [];
 
     push(value: number) {
