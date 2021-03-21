@@ -2,7 +2,7 @@ import SingleLinked from "../../01_linkList/SingleLinked";
 import Node from '../../common/Node'
 
 export default class Queue {
-    singleLink: SingleLinked;
+    private singleLink: SingleLinked;
 
     constructor() {
         this.singleLink = new SingleLinked();
@@ -13,5 +13,10 @@ export default class Queue {
     }
 
     pop(){
+        this.singleLink.removeFirstNode();
+    }
+
+    getData(){
+        return this.singleLink.getData();
     }
 }
