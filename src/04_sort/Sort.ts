@@ -1,18 +1,19 @@
 export default class Sort {
     array: Array<number>;
+    length: number;
 
     constructor(array: Array<number>) {
         this.array = array;
+        this.length = array.length;
     }
 
     bubbleSort() {
-        let length = this.array.length;
-        if (length == 0) {
+        if (this.length == 0) {
             return null;
         }
-        for (let i = 0; i < length - 1; i++) {
+        for (let i = 0; i < this.length - 1; i++) {
             let isExchange = false;
-            for (let j = 0; j < length - i; j++) {
+            for (let j = 0; j < this.length - i; j++) {
                 if (this.array[j] > this.array[j + 1]) {
                     let temp = this.array[j];
                     this.array[j] = this.array[j + 1];
@@ -28,12 +29,11 @@ export default class Sort {
     }
 
     insertionSort() {
-        let length = this.array.length;
-        if (length <= 1) {
+        if (this.length <= 1) {
             return null;
         }
 
-        for (let i = 1; i < length; i++) {
+        for (let i = 1; i < this.length; i++) {
             let j = i - 1;
             let value = this.array[i];
             for (; j >= 0; j--) {
@@ -43,8 +43,9 @@ export default class Sort {
                     break;
                 }
             }
-            this.array[j+1] = value;
+            this.array[j + 1] = value;
         }
         return this.array;
     }
+
 }
