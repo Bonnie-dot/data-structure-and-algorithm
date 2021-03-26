@@ -1,4 +1,5 @@
 export default class Sort {
+
     array: Array<number>;
     length: number;
 
@@ -48,4 +49,24 @@ export default class Sort {
         return this.array;
     }
 
+    mergeSort(array): number[] {
+        if (array.length <= 1) return array;
+        const mediumNumber = Math.floor(array.length / 2);
+        return Sort.merge(this.mergeSort(array.slice(0, mediumNumber)), this.mergeSort(array.slice(mediumNumber)));
+    }
+
+    private static merge(array1: number[], array2: number[]): number[] {
+        let i = 0, j = 0;
+        let temp = [];
+        while (i <= array1.length - 1 && j <= array2.length - 1) {
+            if (array1[i] < array2[j]) {
+                temp.push(array1[i]);
+                i++;
+            } else {
+                temp.push(array2[j]);
+                j++;
+            }
+        }
+        return temp.concat(array1.slice(i)).concat(array2.slice(j));
+    }
 }
