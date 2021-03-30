@@ -69,4 +69,37 @@ export default class Sort {
         }
         return temp.concat(array1.slice(i)).concat(array2.slice(j));
     }
+
+    quickSort() {
+        this.quickSortByPivot(this.array, 0, this.length - 1)
+    }
+
+    private quickSortByPivot(array: Array<number>, startIndex: number, endIndex: number) {
+        if (startIndex >= endIndex) {
+            return;
+        }
+        const pivot = this.partition(array, startIndex, endIndex);
+        this.quickSortByPivot(array, startIndex, pivot - 1);
+        this.quickSortByPivot(array, pivot + 1, array.length - 1);
+    }
+
+    private partition(array: Array<number>, startIndex: number, endIndex: number) {
+        const pivot = array[endIndex];
+        let left = startIndex;
+        for (let j = startIndex; j < endIndex; j++) {
+            if (array[j] < pivot) {
+                this.swap(array, left, j);
+                left++;
+            }
+        }
+        this.swap(array, left, endIndex);
+        return left;
+
+    }
+
+    private swap(array: Array<number>, index1: number, index2: number) {
+        const temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
 }
