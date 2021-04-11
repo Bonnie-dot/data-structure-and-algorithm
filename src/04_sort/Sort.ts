@@ -105,23 +105,13 @@ export default class Sort {
 
     countingSort() {
         // 1.find maxValue and minValue
-        let maxValue = this.array[1];
-        this.array.forEach(value => {
-            if (value > maxValue) {
-                maxValue = value;
-            }
-        });
+        const maxValue = this.findMaxValue();
 
         //2.apply for a array for counting
-        const countingArray = new Array(maxValue + 1).fill(0);
-        this.array.forEach(value => {
-            countingArray[value]++;
-        });
+        let countingArray = this.sumTotalCountForEveryValue(maxValue);
 
         // 3. in turn ,accumulative
-        for (let i = 1; i < countingArray.length; i++) {
-            countingArray[i] = countingArray[i] + countingArray[i - 1];
-        }
+        countingArray= this.accumulative(countingArray);
 
         //3.create a new array, according to countingArray sorting
         const tempArray = new Array(this.length);
@@ -132,5 +122,55 @@ export default class Sort {
         });
 
         this.array= tempArray;
+    }
+
+    radixSort(){
+        const counter = [];
+        let mod = 10;
+        let dev = 1;
+        let count = this.findMaxValue().toString().length;
+        for (let i = 0; i < count; i++, dev *= 10, mod *= 10) {
+            for(let j = 0; j < this.array.length; j++) {
+                let bucket = ((this.array[j] % mod) / dev).toFixed(0);
+                if(counter[bucket]==null) {
+                    counter[bucket] = [];
+                }
+                counter[bucket].push(this.array[j]);
+            }
+            let pos = 0;
+            for(let j = 0; j < counter.length; j++) {
+                let value = null;
+                if(counter[j]!=null) {
+                    while ((value = counter[j].shift()) != null) {
+                        this.array[pos++] = value;
+                    }
+                }
+            }
+        }
+    }
+
+    private sumTotalCountForEveryValue(maxValue: number) {
+        const countingArray = new Array(maxValue + 1).fill(0);
+        this.array.forEach(value => {
+            countingArray[value]++;
+        });
+        return countingArray;
+    }
+
+    private findMaxValue() {
+        let maxValue = this.array[1];
+        this.array.forEach(value => {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        });
+        return maxValue;
+    }
+
+    private accumulative(countingArray: any[]) {
+        for (let i = 1; i < countingArray.length; i++) {
+            countingArray[i] = countingArray[i] + countingArray[i - 1];
+        }
+        return countingArray;
     }
 }

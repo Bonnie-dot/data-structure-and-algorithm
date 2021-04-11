@@ -43,4 +43,11 @@ describe('test sort correctly', () => {
 
         expect(sort.array).toEqual([ 0, 0, 2, 2, 3, 3, 3, 5]);
     });
+
+    test('should sort correctly when call radixSort', () => {
+        const sort = new Sort([15343243241,13454353453,13342343343,18934909032,14380584054]);
+        sort.radixSort();
+
+        expect(sort.array).toEqual([13342343343, 13454353453, 14380584054, 15343243241, 18934909032]);
+    });
 })
