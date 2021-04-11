@@ -102,4 +102,35 @@ export default class Sort {
         array[index1] = array[index2];
         array[index2] = temp;
     }
+
+    countingSort() {
+        // 1.find maxValue and minValue
+        let maxValue = this.array[1];
+        this.array.forEach(value => {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        });
+
+        //2.apply for a array for counting
+        const countingArray = new Array(maxValue + 1).fill(0);
+        this.array.forEach(value => {
+            countingArray[value]++;
+        });
+
+        // 3. in turn ,accumulative
+        for (let i = 1; i < countingArray.length; i++) {
+            countingArray[i] = countingArray[i] + countingArray[i - 1];
+        }
+
+        //3.create a new array, according to countingArray sorting
+        const tempArray = new Array(this.length);
+        this.array.forEach(value => {
+            let index = countingArray[value] - 1;
+            tempArray[index] = value;
+            countingArray[value]--;
+        });
+
+        this.array= tempArray;
+    }
 }
