@@ -6,12 +6,8 @@ JavaScript+TypeScript+Jest
 
 #### 目录
 ```
-.
 ├── README.md
 ├── babel.config.js
-├── images
-│   ├── single-linked-list-cycle.png
-│   └── single-linked-list.png
 ├── package-lock.json
 ├── package.json
 ├── src
@@ -49,7 +45,7 @@ JavaScript+TypeScript+Jest
 - npm run test，可以看UT
 
 ### 练习
-- [单链表 CRUD、单链表反转、链表中环的检测、两个有序的链表合并、删除链表倒数第 n 个结点](./linkList)
-- [栈的实现](./02_stack/)
-- [队的实现](./03_queue)
-- [排序包括冒泡排序、插入排序、归并排序、快排、计数排序](./04_sort)
+- [单链表 CRUD、单链表反转、链表中环的检测、两个有序的链表合并、删除链表倒数第 n 个结点](/src/01_linkList)
+- [栈的实现](/src/02_stack/)
+- [队的实现](/src/03_queue)
+- [排序包括冒泡排序、插入排序、归并排序、快排、计数排序](/src/04_sort)
