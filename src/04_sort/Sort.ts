@@ -14,11 +14,11 @@ export default class Sort {
         }
         for (let i = 0; i < this.length - 1; i++) {
             let isExchange = false;
-            for (let j = 0; j < this.length - i; j++) {
-                if (this.array[j] > this.array[j + 1]) {
-                    let temp = this.array[j];
-                    this.array[j] = this.array[j + 1];
-                    this.array[j + 1] = temp;
+            for (let j = this.length-1; j>=i; j--) {
+                if (this.array[j-1] > this.array[j]) {
+                    let temp = this.array[j-1];
+                    this.array[j-1] = this.array[j];
+                    this.array[j] = temp;
                     isExchange = true;
                 }
             }
