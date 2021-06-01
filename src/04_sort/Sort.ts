@@ -31,20 +31,21 @@ export default class Sort {
 
     insertionSort() {
         if (this.length <= 1) {
-            return null;
+            return this.array;
         }
 
-        for (let i = 1; i < this.length; i++) {
-            let j = i - 1;
-            let value = this.array[i];
-            for (; j >= 0; j--) {
-                if (this.array[j] > value) {
-                    this.array[j + 1] = this.array[j];
-                } else {
-                    break;
+        for (let i = 0; i < this.length; i++) {
+            let min = i;
+            for (let j = i+1 ;j<this.length;j++){
+                if (this.array[j]<this.array[min]){
+                    min = j;
                 }
             }
-            this.array[j + 1] = value;
+            if(i!==min){
+                const temp = this.array[i];
+                this.array[i] = this.array[min];
+                this.array[min] = temp;
+            }
         }
         return this.array;
     }
