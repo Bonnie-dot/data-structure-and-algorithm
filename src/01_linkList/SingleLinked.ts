@@ -196,6 +196,13 @@ export default class SingleLinked {
     }
 
     clearLink() {
-        this.head.next = null;
+        let p = this.head.next;
+        let q:Node;
+        while (p) {
+            q = p.next;
+            p = null;
+            q= p;
+        }
+        this.head = null;
     }
 }
