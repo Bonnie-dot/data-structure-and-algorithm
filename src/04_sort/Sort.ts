@@ -10,7 +10,7 @@ export default class Sort {
 
     bubbleSort() {
         if (this.length == 0) {
-            return null;
+            return this.array;
         }
         for (let i = 0; i < this.length - 1; i++) {
             let isExchange = false;
@@ -31,7 +31,7 @@ export default class Sort {
 
     insertionSort() {
         if (this.length <= 1) {
-            return null;
+            return this.array;
         }
 
         for (let i = 1; i < this.length; i++) {
