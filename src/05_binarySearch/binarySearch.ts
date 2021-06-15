@@ -62,3 +62,25 @@ export const searchValueWithFirstValue = (
   }
 };
 
+export const searchValueWithLastValue = (
+  data: Array<number>,
+  searchValue: number,
+  low: number,
+  high: number,
+) => {
+  if (low>=high) {
+    return -1;
+  }
+  let mid = Math.floor(low + (high - low) / 2);
+  if (data[mid]<searchValue){
+    return searchValueWithLastValue(data,searchValue,mid+1,high);
+  }else if (data[mid]>searchValue){
+    return searchValueWithLastValue(data,searchValue,low,mid-1);
+  }else {
+   if (mid === high || data[mid +1] !== searchValue){
+     return mid;
+   }
+    return searchValueWithLastValue(data,searchValue,mid,high+1);
+  }
+};
+

@@ -1,5 +1,5 @@
 import {
-  searchValueWithFirstValue,
+  searchValueWithFirstValue, searchValueWithLastValue,
   searchValueWithLoop,
   searchValueWithRecursive,
 } from "./binarySearch";
@@ -29,6 +29,16 @@ describe("should look up correctly", () => {
         9
     );
     expect(result).toEqual(1);
+  });
+
+  it("should look up last equal value when searchValueWithLastValue method ", function () {
+    const result = searchValueWithLastValue(
+      [8, 19, 19, 19, 33, 45, 55, 67, 98],
+      19,
+        0,
+        9
+    );
+    expect(result).toEqual(3);
   });
 
 });
