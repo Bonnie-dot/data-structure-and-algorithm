@@ -1,38 +1,34 @@
 import BrowserForwardBack from "./Browser-forward-back";
 
-describe('mock browser forward and back behavior',()=>{
+describe("mock browser forward and back behavior", () => {
+  it("should forward successfully when given a", function () {
+    const browserForwardBack = new BrowserForwardBack();
+    browserForwardBack.forward("a");
+    browserForwardBack.forward("b");
 
-    it('should forward successfully when given a', function () {
+    expect(browserForwardBack.getValues()).toEqual("a,b");
+  });
 
-        const browserForwardBack = new BrowserForwardBack();
-        browserForwardBack.forward('a');
-        browserForwardBack.forward('b');
+  it("should back successfully when back", function () {
+    const browserForwardBack = new BrowserForwardBack();
+    browserForwardBack.forward("a");
+    browserForwardBack.forward("b");
+    browserForwardBack.back();
 
-        expect(browserForwardBack.getValues()).toEqual('a,b');
-    });
+    expect(browserForwardBack.getBackValues()).toEqual("b");
+    expect(browserForwardBack.getValues()).toEqual("a");
+  });
 
-    it('should back successfully when back', function () {
+  it("should back b when forward a,b,c,and back b,and forward d", function () {
+    const browserForwardBack = new BrowserForwardBack();
+    browserForwardBack.forward("a");
+    browserForwardBack.forward("b");
+    browserForwardBack.forward("c");
+    browserForwardBack.back();
+    browserForwardBack.forward("d");
+    browserForwardBack.back();
 
-        const browserForwardBack = new BrowserForwardBack();
-        browserForwardBack.forward('a');
-        browserForwardBack.forward('b');
-        browserForwardBack.back();
-
-        expect(browserForwardBack.getBackValues()).toEqual('b');
-        expect(browserForwardBack.getValues()).toEqual('a');
-    });
-
-    it('should back b when forward a,b,c,and back b,and forward d', function () {
-
-        const browserForwardBack = new BrowserForwardBack();
-        browserForwardBack.forward('a');
-        browserForwardBack.forward('b');
-        browserForwardBack.forward('c');
-        browserForwardBack.back();
-        browserForwardBack.forward('d');
-        browserForwardBack.back();
-
-        expect(browserForwardBack.getBackValues()).toEqual('d');
-        expect(browserForwardBack.getValues()).toEqual('a,b');
-    });
+    expect(browserForwardBack.getBackValues()).toEqual("d");
+    expect(browserForwardBack.getValues()).toEqual("a,b");
+  });
 });

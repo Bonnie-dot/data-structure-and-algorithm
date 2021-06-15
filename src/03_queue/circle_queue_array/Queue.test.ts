@@ -1,42 +1,37 @@
 import Queue from "./Queue";
 
-describe('Queue operating', () => {
+describe("Queue operating", () => {
+  it("should enqueue successfully when call enqueue without full", function () {
+    const queue = new Queue(5);
+    queue.enqueue(1);
 
-    it('should enqueue successfully when call enqueue without full', function () {
+    expect(queue.enqueue(2)).toEqual(true);
+    expect(queue.data).toEqual([1, 2, undefined, undefined, undefined]);
+  });
 
-        const queue = new Queue(5);
-        queue.enqueue(1);
+  it("should enqueue fail when array is fill", function () {
+    const queue = new Queue(2);
+    queue.enqueue(1);
+    queue.enqueue(2);
 
-        expect(queue.enqueue(2)).toEqual(true);
-        expect(queue.data).toEqual([1, 2, undefined, undefined, undefined]);
-    });
+    expect(queue.enqueue(3)).toEqual(false);
+    // it cause spend a space in array.
+    expect(queue.data).toEqual([1, undefined]);
+  });
 
-    it('should enqueue fail when array is fill', function () {
+  it("should dequeue successfully when call dequeue without full", function () {
+    const queue = new Queue(3);
+    queue.enqueue(1);
+    queue.enqueue(2);
 
-        const queue = new Queue(2);
-        queue.enqueue(1);
-        queue.enqueue(2);
+    expect(queue.dequeue()).toEqual(true);
+    expect(queue.data).toEqual([undefined, 2, undefined]);
+  });
 
-        expect(queue.enqueue(3)).toEqual(false);
-        // it cause spend a space in array.
-        expect(queue.data).toEqual([1,undefined]);
-    });
+  it("should dequeue fail when array is empty", function () {
+    const queue = new Queue(2);
 
-    it('should dequeue successfully when call dequeue without full', function () {
-
-        const queue = new Queue(3);
-        queue.enqueue(1);
-        queue.enqueue(2);
-
-        expect(queue.dequeue()).toEqual(true);
-        expect(queue.data).toEqual([undefined,2,undefined]);
-    });
-
-    it('should dequeue fail when array is empty', function () {
-
-        const queue = new Queue(2);
-
-        expect(queue.dequeue()).toEqual(false);
-        expect(queue.data).toEqual([undefined,undefined]);
-    });
-})
+    expect(queue.dequeue()).toEqual(false);
+    expect(queue.data).toEqual([undefined, undefined]);
+  });
+});
