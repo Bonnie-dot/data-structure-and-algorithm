@@ -1,4 +1,5 @@
 import {
+  searchValueWithFirstGreaterOrEqualValue,
   searchValueWithFirstValue, searchValueWithLastValue,
   searchValueWithLoop,
   searchValueWithRecursive,
@@ -41,4 +42,19 @@ describe("should look up correctly", () => {
     expect(result).toEqual(3);
   });
 
+  it.each`
+  data                                   | searchValue | low  | high  | expected
+   ${[8, 19, 19, 19, 33, 45, 55, 67, 98]}| ${19}       | ${0} |  ${9} | ${1} 
+  ${[8, 19, 19, 20, 33, 45, 55, 67, 98]} | ${19}       | ${0} |  ${9} | ${1} 
+  ${[8, 19, 19, 21, 33, 45, 55, 67, 98]} | ${20}       | ${0} |  ${9} | ${3} 
+  `('should return $expected when call searchValueWithFirstGreaterOrEqualValue method with $data,$searchValue'
+      ,  ({data,searchValue,low,high,expected})=> {
+    const result = searchValueWithFirstGreaterOrEqualValue(
+        data,
+        searchValue,
+        low,
+        high
+    );
+    expect(result).toEqual(expected);
+  });
 });
