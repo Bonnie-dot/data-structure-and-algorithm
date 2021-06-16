@@ -7,12 +7,12 @@ import {
 import { describe } from "@jest/globals";
 
 describe("should look up correctly", () => {
-  it("should look up correctly when call searchValueWithLoop method", function () {
+  it("should look up correctly when call searchValueWithLoop method",  ()=> {
     const result = searchValueWithLoop(19, [8, 19, 23, 27, 33, 45, 55, 67, 98]);
     expect(result).toEqual(1);
   });
 
-  it("should look up correctly when call searchValueWithRecursive method", function () {
+  it("should look up correctly when call searchValueWithRecursive method",  ()=> {
     const result = searchValueWithRecursive(
       19,
       [8, 19, 23, 27, 33, 45, 55, 67, 98],
@@ -22,7 +22,7 @@ describe("should look up correctly", () => {
     expect(result).toEqual(1);
   });
 
-  it("should look up first equal value when searchValueWithFirstValue method ", function () {
+  it("should look up first equal value when searchValueWithFirstValue method ",  ()=> {
     const result = searchValueWithFirstValue(
       [8, 19, 19, 27, 33, 45, 55, 67, 98],
       19,
@@ -32,7 +32,7 @@ describe("should look up correctly", () => {
     expect(result).toEqual(1);
   });
 
-  it("should look up last equal value when searchValueWithLastValue method ", function () {
+  it("should look up last equal value when searchValueWithLastValue method ",  ()=> {
     const result = searchValueWithLastValue(
       [8, 19, 19, 19, 33, 45, 55, 67, 98],
       19,

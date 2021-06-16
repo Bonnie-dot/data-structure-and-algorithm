@@ -46,7 +46,7 @@ export const searchValueWithFirstValue = (
   low: number,
   high: number,
 ) => {
-  if (low>=high) {
+  if (low>high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
@@ -68,7 +68,7 @@ export const searchValueWithLastValue = (
   low: number,
   high: number,
 ) => {
-  if (low>=high) {
+  if (low>high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
