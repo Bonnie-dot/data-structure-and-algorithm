@@ -98,3 +98,23 @@ export const searchValueWithFirstGreaterOrEqualValue =(data: Array<number>, sear
     return searchValueWithFirstGreaterOrEqualValue(data,searchValue,low,mid-1);
   }
 }
+
+export const searchValueWithLastLessOrEqualValue = (
+    data: Array<number>,
+    searchValue: number,
+    low: number,
+    high: number,
+) => {
+  if (low>high) {
+    return -1;
+  }
+  let mid = Math.floor(low + (high - low) / 2);
+  if (data[mid]<=searchValue){
+    if (mid === high || data[mid +1] > searchValue){
+      return mid;
+    }
+    return searchValueWithLastLessOrEqualValue(data,searchValue,mid+1,high);
+  }else if (data[mid]>searchValue){
+    return searchValueWithLastLessOrEqualValue(data,searchValue,low,mid-1);
+  }
+};

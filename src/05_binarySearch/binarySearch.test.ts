@@ -1,6 +1,6 @@
 import {
   searchValueWithFirstGreaterOrEqualValue,
-  searchValueWithFirstValue, searchValueWithLastValue,
+  searchValueWithFirstValue, searchValueWithLastLessOrEqualValue, searchValueWithLastValue,
   searchValueWithLoop,
   searchValueWithRecursive,
 } from "./binarySearch";
@@ -57,4 +57,19 @@ describe("should look up correctly", () => {
     );
     expect(result).toEqual(expected);
   });
+
+  it.each`
+  data                                   | searchValue | low  | high  | expected
+   ${[8, 19, 19, 19, 33, 45, 55, 67, 98]}| ${19}       | ${0} |  ${9} | ${3} 
+  ${[10, 15, 16, 16, 20, 45, 55, 67, 98]}| ${17}       | ${0} |  ${9} | ${3} 
+  `('should return $expected when call searchValueWithLastLessOrEqualValue method with $data,$searchValue'
+      ,  ({data,searchValue,low,high,expected})=> {
+        const result = searchValueWithLastLessOrEqualValue(
+            data,
+            searchValue,
+            low,
+            high
+        );
+        expect(result).toEqual(expected);
+      });
 });
