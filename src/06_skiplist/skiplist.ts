@@ -14,7 +14,7 @@ export class SkipList {
         return level;
     }
 
-    find(value:number){
+    find(value:number):number{
         let p = this.head;
         for (let i = this.totalLevel-1;i>=0;i--){
             while (p.refer[i]!==undefined && p.refer[i].data<=value){
@@ -22,7 +22,7 @@ export class SkipList {
             }
         }
         if (p.refer[0]!==undefined){
-            return p.refer[0];
+            return p.data;
         }else {
             return null;
         }
