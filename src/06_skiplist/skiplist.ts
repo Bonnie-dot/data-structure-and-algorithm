@@ -31,7 +31,7 @@ export class SkipList {
     insert(value){
         const randomLevel = SkipList.randomLevel();
         const newNode = new Node(value,randomLevel);
-        const update = new Array(randomLevel);
+        const update = new Array(randomLevel).fill(new Node(-1,0));
         let p = this.head;
         // save next node refer
         for (let i= randomLevel-1;i>=0;i--){
@@ -50,6 +50,19 @@ export class SkipList {
         }
     }
 
+    remove(value){
+        let p = this.head;
+        let removeValue = [];
+        for (let i = this.totalLevel-1;i>=0;i--){
+            while (p.refer[i]!==undefined&&p.refer[i].data<value){
+                p = p.refer[i];
+            }
+            removeValue[i] = p;
+        }
+        for (let i=0;i<p.level;i++){
+            removeValue[i].refer[i] = removeValue[i].refer[i].refer[i];
+        }
+    }
     printAll(){
         let p = this.head;
         const tempArr = [];
