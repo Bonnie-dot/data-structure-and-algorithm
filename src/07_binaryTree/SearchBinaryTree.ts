@@ -44,16 +44,21 @@ export class SearchBinaryTree {
 
   findParent(data: number): Node {
       let current = this.root;
-      while ((current.left && current.right)
-      || (current.left && current.data > data)
-      || (current.right && current.data<data)){
+      if (!current.left && !current.right){
+          return null;
+      }
+      let parent: Node;
+      while (current) {
           if (current.data>data){
+              parent = current;
               current = current.left;
-          }else {
+          }else if (current.data< data){
+              parent = current;
               current = current.right;
+          }else {
+              return parent;
           }
       }
-      return null;
   }
 
   delete(value: number){
