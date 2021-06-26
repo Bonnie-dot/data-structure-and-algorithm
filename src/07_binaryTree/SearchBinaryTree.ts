@@ -10,7 +10,7 @@ export class SearchBinaryTree {
       this.root = node;
       return;
     }
-    const findParent = this.findParentOrValue(data);
+    const findParent = this.findParent(data);
       findParent.data > data
           ? (findParent.left = node)
           : (findParent.right = node);
@@ -20,7 +20,7 @@ export class SearchBinaryTree {
      * find parent node or find equal value
      * @param data: value
      */
-  findParentOrValue(data: number): Node {
+  findParent(data: number): Node {
       if ((!this.root.left && !this.root.right)
           || (!this.root.right && this.root.data < data)
           || (!this.root.left && this.root.data > data) ) {
