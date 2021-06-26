@@ -1,7 +1,7 @@
 import Queue from "./Queue";
 
 describe("Queue operating", () => {
-  it("should enqueue successfully when call enqueue without full", function () {
+  it("should enqueue successfully when call enqueue without full", () => {
     const queue = new Queue(5);
     queue.enqueue(1);
 
@@ -9,7 +9,7 @@ describe("Queue operating", () => {
     expect(queue.data).toEqual([1, 2, undefined, undefined, undefined]);
   });
 
-  it("should enqueue fail when array is fill", function () {
+  it("should enqueue fail when array is fill", () => {
     const queue = new Queue(2);
     queue.enqueue(1);
     queue.enqueue(2);
@@ -19,7 +19,7 @@ describe("Queue operating", () => {
     expect(queue.data).toEqual([1, undefined]);
   });
 
-  it("should dequeue successfully when call dequeue without full", function () {
+  it("should dequeue successfully when call dequeue without full", () => {
     const queue = new Queue(3);
     queue.enqueue(1);
     queue.enqueue(2);
@@ -28,7 +28,7 @@ describe("Queue operating", () => {
     expect(queue.data).toEqual([undefined, 2, undefined]);
   });
 
-  it("should dequeue fail when array is empty", function () {
+  it("should dequeue fail when array is empty", () => {
     const queue = new Queue(2);
 
     expect(queue.dequeue()).toEqual(false);

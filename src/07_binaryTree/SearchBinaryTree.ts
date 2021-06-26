@@ -11,103 +11,104 @@ export class SearchBinaryTree {
       return;
     }
     let current = this.root;
-    while (current){
-        if (current.data > data){
-            if (!current.left) {
-                current.left = node;
-                return;
-            }
-            current = current.left;
-        }else {
-            if (!current.right) {
-                current.right = node;
-                return;
-            }
-            current = current.right
+    while (current) {
+      if (current.data > data) {
+        if (!current.left) {
+          current.left = node;
+          return;
         }
+        current = current.left;
+      } else {
+        if (!current.right) {
+          current.right = node;
+          return;
+        }
+        current = current.right;
+      }
     }
   }
 
   find(data: number): Node {
-      let current = this.root;
-      while (current) {
-          if (current.data>data){
-              current = current.left;
-          }else if(current.data < data) {
-              current = current.right;
-          }else {
-              return current;
-          }
+    let current = this.root;
+    while (current) {
+      if (current.data > data) {
+        current = current.left;
+      } else if (current.data < data) {
+        current = current.right;
+      } else {
+        return current;
       }
-      return null;
+    }
+    return null;
   }
 
   findParent(data: number): Node {
-      let current = this.root;
-      if (!current.left && !current.right){
-          return null;
+    let current = this.root;
+    if (!current.left && !current.right) {
+      return null;
+    }
+    let parent: Node;
+    while (current) {
+      if (current.data > data) {
+        parent = current;
+        current = current.left;
+      } else if (current.data < data) {
+        parent = current;
+        current = current.right;
+      } else {
+        return parent;
       }
-      let parent: Node;
-      while (current) {
-          if (current.data>data){
-              parent = current;
-              current = current.left;
-          }else if (current.data< data){
-              parent = current;
-              current = current.right;
-          }else {
-              return parent;
-          }
-      }
+    }
   }
 
-  delete(value: number){
+  delete(value: number) {
     const parentNode = this.findParent(value);
-    if (!parentNode){
-        this.root = null;
-        return;
+    if (!parentNode) {
+      this.root = null;
+      return;
     }
-    const findNode = parentNode?.left?.data === value ? parentNode.left: parentNode.right;
-    if (!findNode.left || !parentNode.right ){
-        this.deleteWithNoChildOrOneChild(parentNode,findNode);
-    }else {
-        this.deleteWithTwoChild(findNode);
+    const findNode =
+      parentNode?.left?.data === value ? parentNode.left : parentNode.right;
+    if (!findNode.left || !parentNode.right) {
+      this.deleteWithNoChildOrOneChild(parentNode, findNode);
+    } else {
+      this.deleteWithTwoChild(findNode);
     }
   }
 
-  deleteWithNoChildOrOneChild(parentNode:Node, node: Node){
-      let child: Node;
-      if (node.left){
-        child = node.left;
-      }else if (node.right){
-          child = node.right;
-      }else {
-          child = null;
-      }
-      if (parentNode.left === node){
-          parentNode.left = child;
-      }else {
-          parentNode.right = child;
-      }
+  deleteWithNoChildOrOneChild(parentNode: Node, node: Node) {
+    let child: Node;
+    if (node.left) {
+      child = node.left;
+    } else if (node.right) {
+      child = node.right;
+    } else {
+      child = null;
+    }
+    if (parentNode.left === node) {
+      parentNode.left = child;
+    } else {
+      parentNode.right = child;
+    }
   }
 
-  deleteWithTwoChild(node: Node){
-      let current = node.right;
-      let leftParent;
-      while (current.left){
-          leftParent = current;
-          current = current.left;
-      }
-      node.data = current.data;
-      leftParent.left = null;
+  deleteWithTwoChild(node: Node) {
+    let current = node.right;
+    let leftParent;
+    while (current.left) {
+      leftParent = current;
+      current = current.left;
+    }
+    node.data = current.data;
+    leftParent.left = null;
   }
   /**
    * traversal in order
    */
   traversalInOrder(node: Node) {
-      if (!node){
-          return;
-      }
+    if (!node) {
+      return;
+    }
     if (!node.left && !node.right) {
       this.printedData.push(node.data);
       return;
