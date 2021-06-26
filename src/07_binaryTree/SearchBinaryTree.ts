@@ -21,11 +21,13 @@ export class SearchBinaryTree {
      * @param data: value
      */
   findParentOrValue(data: number): Node {
-      if (!this.root.left && !this.root.right ) {
+      if ((!this.root.left && !this.root.right)
+          || (this.root.left && this.root.data < data)
+          || (this.root.right && this.root.data > data) ) {
           return this.root;
       }
     let current = this.root;
-    while (current.left||current.right) {
+    while (current.left || current.right) {
       if (current.data > data) {
         current = current.left;
       } else if (current.data < data) {

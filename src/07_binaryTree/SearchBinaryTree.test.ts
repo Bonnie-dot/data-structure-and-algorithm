@@ -27,4 +27,25 @@ describe("search binary tree", () => {
 
         expect(searchBinaryTree.printedData).toEqual([4, 6, 8]);
     });
+
+    it("should assign right value when call insert", function () {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(8);
+        searchBinaryTree.insert(6);
+        searchBinaryTree.insert(9);
+        searchBinaryTree.print();
+
+        expect(searchBinaryTree.printedData).toEqual([6, 8, 9]);
+    });
+
+    it("should level right value when call insert", function () {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(8);
+        searchBinaryTree.insert(6);
+        searchBinaryTree.insert(9);
+        searchBinaryTree.insert(10);
+        searchBinaryTree.print();
+
+        expect(searchBinaryTree.printedData).toEqual([6, 8, 9, 10]);
+    });
 });
