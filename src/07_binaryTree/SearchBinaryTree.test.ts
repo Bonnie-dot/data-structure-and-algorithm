@@ -92,4 +92,14 @@ describe("search binary tree", () => {
         searchBinaryTree.print()
         expect(searchBinaryTree.printedData).toEqual([6,10]);
     });
+
+    it('should delete value when call delete with having no child', function () {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(10);
+        searchBinaryTree.insert(8);
+        searchBinaryTree.insert(6);
+        searchBinaryTree.delete(6);
+        searchBinaryTree.print()
+        expect(searchBinaryTree.printedData).toEqual([8,10]);
+    });
 });
