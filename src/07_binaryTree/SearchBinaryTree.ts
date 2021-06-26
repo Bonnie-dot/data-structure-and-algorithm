@@ -10,15 +10,22 @@ export class SearchBinaryTree {
       this.root = node;
       return;
     }
-    const findParent = this.findParent(data);
+    const findParent = this.findParentOrValue(data);
       findParent.data > data
           ? (findParent.left = node)
           : (findParent.right = node);
   }
 
-  find(data: number): Node {
+    /**
+     * find parent node or find equal value
+     * @param data: value
+     */
+  findParentOrValue(data: number): Node {
+      if (!this.root.left && !this.root.right ) {
+          return this.root;
+      }
     let current = this.root;
-    while (current.left !== null || current.right !== null) {
+    while (current.left||current.right) {
       if (current.data > data) {
         current = current.left;
       } else if (current.data < data) {
@@ -27,19 +34,11 @@ export class SearchBinaryTree {
         return current;
       }
     }
-    return null;
-  }
-
-  findParent(data: number): Node {
-      if (!this.root.left && !this.root.right ) {
-          return this.root;
-      }else {
-
-      }
+    return current;
   }
 
   /**
-   * 中序遍历
+   * traversal in order
    */
   traversalInOrder(node: Node) {
       if (!node){
