@@ -48,4 +48,19 @@ describe("search binary tree", () => {
 
         expect(searchBinaryTree.printedData).toEqual([6, 8, 9, 10]);
     });
+
+    it("should assign multiple value value when call insert", function () {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(10);
+        searchBinaryTree.insert(20);
+        searchBinaryTree.insert(8);
+        searchBinaryTree.insert(25);
+        searchBinaryTree.insert(19);
+        searchBinaryTree.insert(6);
+        searchBinaryTree.insert(7);
+        searchBinaryTree.insert(5);
+        searchBinaryTree.print();
+
+        expect(searchBinaryTree.printedData).toEqual([5,6,7,8,10,19,20,25]);
+    });
 });

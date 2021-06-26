@@ -27,7 +27,9 @@ export class SearchBinaryTree {
           return this.root;
       }
     let current = this.root;
-    while (current.left || current.right) {
+    while ((current?.left && current?.right) ||
+    (current.left && current.data > data) ||
+    (current.right && current.data < data)) {
       if (current.data > data) {
         current = current.left;
       } else if (current.data < data) {
