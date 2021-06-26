@@ -38,7 +38,7 @@ describe("search binary tree", () => {
         expect(searchBinaryTree.printedData).toEqual([6, 8, 9]);
     });
 
-    it("should level right value when call insert", function () {
+    it("should assign second level right value when call insert", function () {
         const searchBinaryTree = new SearchBinaryTree();
         searchBinaryTree.insert(8);
         searchBinaryTree.insert(6);

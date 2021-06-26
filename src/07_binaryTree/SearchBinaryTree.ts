@@ -22,8 +22,8 @@ export class SearchBinaryTree {
      */
   findParentOrValue(data: number): Node {
       if ((!this.root.left && !this.root.right)
-          || (this.root.left && this.root.data < data)
-          || (this.root.right && this.root.data > data) ) {
+          || (!this.root.right && this.root.data < data)
+          || (!this.root.left && this.root.data > data) ) {
           return this.root;
       }
     let current = this.root;
