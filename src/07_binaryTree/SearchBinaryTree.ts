@@ -10,14 +10,10 @@ export class SearchBinaryTree {
       this.root = node;
       return;
     }
-    const findParent = this.find(data);
-    if (!findParent) {
-      this.root > data ? (this.root.left = node) : (this.root.right = node);
-    } else {
+    const findParent = this.findParent(data);
       findParent.data > data
-        ? (findParent.left = node)
-        : (findParent.right = node);
-    }
+          ? (findParent.left = node)
+          : (findParent.right = node);
   }
 
   find(data: number): Node {
@@ -34,10 +30,21 @@ export class SearchBinaryTree {
     return null;
   }
 
+  findParent(data: number): Node {
+      if (!this.root.left && !this.root.right ) {
+          return this.root;
+      }else {
+
+      }
+  }
+
   /**
    * 中序遍历
    */
   traversalInOrder(node: Node) {
+      if (!node){
+          return;
+      }
     if (!node.left && !node.right) {
       this.printedData.push(node.data);
       return;
