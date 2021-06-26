@@ -67,9 +67,11 @@ export class SearchBinaryTree {
         this.root = null;
         return;
     }
-    const findNode = parentNode.left.data === value ? parentNode.left: parentNode.right;
+    const findNode = parentNode?.left?.data === value ? parentNode.left: parentNode.right;
     if (!findNode.left || !parentNode.right ){
         this.deleteWithNoChildOrOneChild(parentNode,findNode);
+    }else {
+        this.deleteWithTwoChild(findNode);
     }
   }
 
@@ -89,6 +91,16 @@ export class SearchBinaryTree {
       }
   }
 
+  deleteWithTwoChild(node: Node){
+      let current = node.right;
+      let leftParent;
+      while (current.left){
+          leftParent = current;
+          current = current.left;
+      }
+      node.data = current.data;
+      leftParent.left = null;
+  }
   /**
    * traversal in order
    */

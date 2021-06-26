@@ -102,4 +102,18 @@ describe("search binary tree", () => {
         searchBinaryTree.print()
         expect(searchBinaryTree.printedData).toEqual([8,10]);
     });
+
+    it('should delete value when call delete with having two childs', ()=> {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(33);
+        searchBinaryTree.insert(16);
+        searchBinaryTree.insert(18);
+        searchBinaryTree.insert(17);
+        searchBinaryTree.insert(25);
+        searchBinaryTree.insert(19);
+        searchBinaryTree.insert(27);
+        searchBinaryTree.delete(18);
+        searchBinaryTree.print()
+        expect(searchBinaryTree.printedData).toEqual([16,17,19,25,27,33]);
+    });
 });
