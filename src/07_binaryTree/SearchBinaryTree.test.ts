@@ -63,4 +63,15 @@ describe("search binary tree", () => {
 
         expect(searchBinaryTree.printedData).toEqual([5,6,7,8,10,19,20,25]);
     });
+
+    it('should find value when call find', function () {
+        const searchBinaryTree = new SearchBinaryTree();
+        searchBinaryTree.insert(10);
+        searchBinaryTree.insert(20);
+        searchBinaryTree.insert(8);
+        searchBinaryTree.insert(25);
+        const result = searchBinaryTree.find(8);
+
+        expect(result).toEqual(8);
+    });
 });

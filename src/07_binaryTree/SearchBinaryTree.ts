@@ -10,35 +10,36 @@ export class SearchBinaryTree {
       this.root = node;
       return;
     }
-    const findParent = this.findParent(data);
-      findParent.data > data
-          ? (findParent.left = node)
-          : (findParent.right = node);
+    let current = this.root;
+    while (current){
+        if (current.data > data){
+            if (!current.left) {
+                current.left = node;
+                return;
+            }
+            current = current.left;
+        }else {
+            if (!current.right) {
+                current.right = node;
+                return;
+            }
+            current = current.right
+        }
+    }
   }
 
-    /**
-     * find parent node or find equal value
-     * @param data: value
-     */
-  findParent(data: number): Node {
-      if ((!this.root.left && !this.root.right)
-          || (!this.root.right && this.root.data < data)
-          || (!this.root.left && this.root.data > data) ) {
-          return this.root;
+  find(data: number): Node {
+      let current = this.root;
+      while (current) {
+          if (current.data>data){
+              current = current.left;
+          }else if(current.data < data) {
+              current = current.right;
+          }else {
+              return current.data;
+          }
       }
-    let current = this.root;
-    while ((current?.left && current?.right) ||
-    (current.left && current.data > data) ||
-    (current.right && current.data < data)) {
-      if (current.data > data) {
-        current = current.left;
-      } else if (current.data < data) {
-        current = current.right;
-      } else {
-        return current;
-      }
-    }
-    return current;
+      return null;
   }
 
   /**
