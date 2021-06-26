@@ -44,21 +44,21 @@ export const searchValueWithFirstValue = (
   data: Array<number>,
   searchValue: number,
   low: number,
-  high: number,
+  high: number
 ) => {
-  if (low>high) {
+  if (low > high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
-  if (data[mid]<searchValue){
-    return searchValueWithFirstValue(data,searchValue,mid+1,high);
-  }else if (data[mid]>searchValue){
-    return searchValueWithFirstValue(data,searchValue,low,mid-1);
-  }else {
-   if (mid ===0 || data[mid -1] !== searchValue){
-     return mid;
-   }
-    return searchValueWithFirstValue(data,searchValue,low,mid-1);
+  if (data[mid] < searchValue) {
+    return searchValueWithFirstValue(data, searchValue, mid + 1, high);
+  } else if (data[mid] > searchValue) {
+    return searchValueWithFirstValue(data, searchValue, low, mid - 1);
+  } else {
+    if (mid === 0 || data[mid - 1] !== searchValue) {
+      return mid;
+    }
+    return searchValueWithFirstValue(data, searchValue, low, mid - 1);
   }
 };
 
@@ -66,55 +66,75 @@ export const searchValueWithLastValue = (
   data: Array<number>,
   searchValue: number,
   low: number,
-  high: number,
+  high: number
 ) => {
-  if (low>high) {
+  if (low > high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
-  if (data[mid]<searchValue){
-    return searchValueWithLastValue(data,searchValue,mid+1,high);
-  }else if (data[mid]>searchValue){
-    return searchValueWithLastValue(data,searchValue,low,mid-1);
-  }else {
-   if (mid === high || data[mid +1] !== searchValue){
-     return mid;
-   }
-    return searchValueWithLastValue(data,searchValue,mid,high+1);
+  if (data[mid] < searchValue) {
+    return searchValueWithLastValue(data, searchValue, mid + 1, high);
+  } else if (data[mid] > searchValue) {
+    return searchValueWithLastValue(data, searchValue, low, mid - 1);
+  } else {
+    if (mid === high || data[mid + 1] !== searchValue) {
+      return mid;
+    }
+    return searchValueWithLastValue(data, searchValue, mid, high + 1);
   }
 };
 
-export const searchValueWithFirstGreaterOrEqualValue =(data: Array<number>, searchValue: number, low: number, high: number)=>{
-  if (low>high) {
+export const searchValueWithFirstGreaterOrEqualValue = (
+  data: Array<number>,
+  searchValue: number,
+  low: number,
+  high: number
+) => {
+  if (low > high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
-  if (data[mid]<searchValue){
-    return searchValueWithFirstGreaterOrEqualValue(data,searchValue,mid+1,high);
-  }else{
-    if (mid ===0 || data[mid-1]<searchValue){
+  if (data[mid] < searchValue) {
+    return searchValueWithFirstGreaterOrEqualValue(
+      data,
+      searchValue,
+      mid + 1,
+      high
+    );
+  } else {
+    if (mid === 0 || data[mid - 1] < searchValue) {
       return mid;
     }
-    return searchValueWithFirstGreaterOrEqualValue(data,searchValue,low,mid-1);
+    return searchValueWithFirstGreaterOrEqualValue(
+      data,
+      searchValue,
+      low,
+      mid - 1
+    );
   }
-}
+};
 
 export const searchValueWithLastLessOrEqualValue = (
-    data: Array<number>,
-    searchValue: number,
-    low: number,
-    high: number,
+  data: Array<number>,
+  searchValue: number,
+  low: number,
+  high: number
 ) => {
-  if (low>high) {
+  if (low > high) {
     return -1;
   }
   let mid = Math.floor(low + (high - low) / 2);
-  if (data[mid]<=searchValue){
-    if (mid === high || data[mid +1] > searchValue){
+  if (data[mid] <= searchValue) {
+    if (mid === high || data[mid + 1] > searchValue) {
       return mid;
     }
-    return searchValueWithLastLessOrEqualValue(data,searchValue,mid+1,high);
-  }else if (data[mid]>searchValue){
-    return searchValueWithLastLessOrEqualValue(data,searchValue,low,mid-1);
+    return searchValueWithLastLessOrEqualValue(
+      data,
+      searchValue,
+      mid + 1,
+      high
+    );
+  } else if (data[mid] > searchValue) {
+    return searchValueWithLastLessOrEqualValue(data, searchValue, low, mid - 1);
   }
 };
