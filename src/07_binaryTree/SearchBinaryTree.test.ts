@@ -4,6 +4,7 @@ describe("search binary tree", () => {
   it("should assign root when call insert", () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([8]);
@@ -13,6 +14,7 @@ describe("search binary tree", () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8]);
@@ -23,6 +25,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(4);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([4, 6, 8]);
@@ -33,6 +36,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(9);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9]);
@@ -44,6 +48,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(9);
     searchBinaryTree.insert(10);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9, 10]);
@@ -59,6 +64,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(7);
     searchBinaryTree.insert(5);
+
     searchBinaryTree.print();
 
     expect(searchBinaryTree.printedData).toEqual([5, 6, 7, 8, 10, 19, 20, 25]);
@@ -70,6 +76,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(20);
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(25);
+
     const result = searchBinaryTree.find(8);
 
     expect(result.data).toEqual(8);
@@ -79,7 +86,9 @@ describe("search binary tree", () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.delete(10);
+
     searchBinaryTree.print();
+
     expect(searchBinaryTree.printedData).toEqual([]);
   });
 
@@ -89,7 +98,9 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
     searchBinaryTree.delete(8);
+
     searchBinaryTree.print();
+
     expect(searchBinaryTree.printedData).toEqual([6, 10]);
   });
 
@@ -99,7 +110,9 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
     searchBinaryTree.delete(6);
+
     searchBinaryTree.print();
+
     expect(searchBinaryTree.printedData).toEqual([8, 10]);
   });
 
@@ -113,7 +126,9 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(19);
     searchBinaryTree.insert(27);
     searchBinaryTree.delete(18);
+
     searchBinaryTree.print();
+
     expect(searchBinaryTree.printedData).toEqual([16, 17, 19, 25, 27, 33]);
   });
 
@@ -126,7 +141,9 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(25);
     searchBinaryTree.insert(19);
     searchBinaryTree.insert(27);
+
     const result = searchBinaryTree.findMaxNode();
+
     expect(result).toEqual(33);
   });
 
@@ -140,7 +157,35 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(90);
     searchBinaryTree.insert(19);
     searchBinaryTree.insert(27);
+
     const result = searchBinaryTree.findMaxNode();
+
     expect(result).toEqual(90);
+  });
+
+  it("should find min value when call findMinNode with having no left node", () => {
+    const searchBinaryTree = new SearchBinaryTree();
+    searchBinaryTree.insert(33);
+    searchBinaryTree.insert(36);
+    searchBinaryTree.insert(38);
+
+    const result = searchBinaryTree.findMinNode();
+
+    expect(result).toEqual(33);
+  });
+
+  it("should find min value when call findMinNode with having left node", () => {
+    const searchBinaryTree = new SearchBinaryTree();
+    searchBinaryTree.insert(33);
+    searchBinaryTree.insert(36);
+    searchBinaryTree.insert(32);
+    searchBinaryTree.insert(26);
+    searchBinaryTree.insert(25);
+    searchBinaryTree.insert(27);
+    searchBinaryTree.insert(38);
+
+    const result = searchBinaryTree.findMinNode();
+
+    expect(result).toEqual(25);
   });
 });

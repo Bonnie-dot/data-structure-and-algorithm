@@ -113,6 +113,17 @@ export class SearchBinaryTree {
       }
       return current.data;
   }
+
+  findMinNode(): number {
+      let current = this.root;
+      if (!current.left){
+          return current.data;
+      }
+      while (current.left){
+          current = current.left;
+      }
+      return current.data;
+  }
   /**
    * traversal in order
    */
