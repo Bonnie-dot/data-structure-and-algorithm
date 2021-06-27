@@ -108,7 +108,7 @@ export class SearchBinaryTree {
       if (!current.right){
           return current.data;
       }
-      while (current){
+      while (current.right){
           current = current.right;
       }
       return current.data;

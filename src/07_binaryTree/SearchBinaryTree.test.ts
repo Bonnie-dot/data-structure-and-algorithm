@@ -129,4 +129,18 @@ describe("search binary tree", () => {
     const result = searchBinaryTree.findMaxNode();
     expect(result).toEqual(33);
   });
+
+  it("should find max value when call findMaxNode with having right node", () => {
+    const searchBinaryTree = new SearchBinaryTree();
+    searchBinaryTree.insert(33);
+    searchBinaryTree.insert(16);
+    searchBinaryTree.insert(18);
+    searchBinaryTree.insert(89);
+    searchBinaryTree.insert(25);
+    searchBinaryTree.insert(90);
+    searchBinaryTree.insert(19);
+    searchBinaryTree.insert(27);
+    const result = searchBinaryTree.findMaxNode();
+    expect(result).toEqual(90);
+  });
 });
