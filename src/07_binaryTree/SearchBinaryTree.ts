@@ -9,6 +9,7 @@ export enum OrderType {
 export class SearchBinaryTree {
   root = null;
   printedData: number[];
+  orderType = OrderType.INORDER;
 
   insert(data: number) {
     const node = new Node(data);
@@ -131,7 +132,7 @@ export class SearchBinaryTree {
     return current.data;
   }
 
-  traversalInOrder(node: Node) {
+  traversalByOrderType(node: Node) {
     if (!node) {
       return;
     }
@@ -139,45 +140,25 @@ export class SearchBinaryTree {
       this.printedData.push(node.data);
       return;
     }
-    this.traversalInOrder(node.left);
-    this.printedData.push(node.data);
-    this.traversalInOrder(node.right);
+    if (this.orderType === OrderType.PREORDER) {
+        this.printedData.push(node.data);
+        this.traversalByOrderType(node.left);
+        this.traversalByOrderType(node.right);
+    }else if (this.orderType === OrderType.INORDER) {
+        this.traversalByOrderType(node.left);
+        this.printedData.push(node.data);
+        this.traversalByOrderType(node.right);
+    }else {
+        this.traversalByOrderType(node.left);
+        this.traversalByOrderType(node.right);
+        this.printedData.push(node.data);
+    }
+
   }
 
-  traversalPreOrder(node: Node) {
-    if (!node) {
-      return;
-    }
-    if (!node.left && !node.right) {
-      this.printedData.push(node.data);
-      return;
-    }
-    this.printedData.push(node.data);
-    this.traversalPreOrder(node.left);
-    this.traversalPreOrder(node.right);
-  }
-
-  traversalPostOrder(node: Node) {
-    if (!node) {
-      return;
-    }
-    if (!node.left && !node.right) {
-      this.printedData.push(node.data);
-      return;
-    }
-    this.traversalPostOrder(node.left);
-    this.traversalPostOrder(node.right);
-    this.printedData.push(node.data);
-  }
-
-  printByOrderType(orderType: OrderType = OrderType.INORDER) {
+  printByOrderType(orderType: OrderType= OrderType.INORDER) {
+      this.orderType = orderType;
     this.printedData = [];
-    if (orderType === OrderType.INORDER) {
-      this.traversalInOrder(this.root);
-    } else if (orderType === OrderType.PREORDER) {
-      this.traversalPreOrder(this.root);
-    } else {
-      this.traversalPostOrder(this.root);
-    }
+    this.traversalByOrderType(this.root);
   }
 }
