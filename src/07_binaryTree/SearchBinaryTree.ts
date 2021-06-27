@@ -102,6 +102,17 @@ export class SearchBinaryTree {
     node.data = current.data;
     leftParent.left = null;
   }
+
+  findMaxNode(): number {
+      let current = this.root;
+      if (!current.right){
+          return current.data;
+      }
+      while (current){
+          current = current.right;
+      }
+      return current.data;
+  }
   /**
    * traversal in order
    */
