@@ -1,4 +1,4 @@
-import { SearchBinaryTree } from "./SearchBinaryTree";
+import { OrderType, SearchBinaryTree } from "./SearchBinaryTree";
 
 describe("search binary tree", () => {
   it("should assign root when call insert", () => {
@@ -187,5 +187,20 @@ describe("search binary tree", () => {
     const result = searchBinaryTree.findMinNode();
 
     expect(result).toEqual(25);
+  });
+
+  it("should print by pre order when call printByOrderType", () => {
+    const searchBinaryTree = new SearchBinaryTree();
+    searchBinaryTree.insert(33);
+    searchBinaryTree.insert(36);
+    searchBinaryTree.insert(32);
+    searchBinaryTree.insert(26);
+    searchBinaryTree.insert(25);
+    searchBinaryTree.insert(27);
+    searchBinaryTree.insert(38);
+
+    searchBinaryTree.printByOrderType(OrderType.PREORDER);
+
+    expect(searchBinaryTree.printedData).toEqual([33, 32, 26, 25, 27, 36, 38]);
   });
 });

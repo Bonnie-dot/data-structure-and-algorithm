@@ -1,9 +1,9 @@
 import { Node } from "./Node";
 
-enum OrderType {
-    PREORDER,
-    INORDER,
-    POSTORDER
+export enum OrderType {
+  PREORDER,
+  INORDER,
+  POSTORDER,
 }
 
 export class SearchBinaryTree {
@@ -110,25 +110,25 @@ export class SearchBinaryTree {
   }
 
   findMaxNode(): number {
-      let current = this.root;
-      if (!current.right){
-          return current.data;
-      }
-      while (current.right){
-          current = current.right;
-      }
+    let current = this.root;
+    if (!current.right) {
       return current.data;
+    }
+    while (current.right) {
+      current = current.right;
+    }
+    return current.data;
   }
 
   findMinNode(): number {
-      let current = this.root;
-      if (!current.left){
-          return current.data;
-      }
-      while (current.left){
-          current = current.left;
-      }
+    let current = this.root;
+    if (!current.left) {
       return current.data;
+    }
+    while (current.left) {
+      current = current.left;
+    }
+    return current.data;
   }
 
   traversalInOrder(node: Node) {
@@ -144,27 +144,27 @@ export class SearchBinaryTree {
     this.traversalInOrder(node.right);
   }
 
-  traversalPreOrder (node: Node){
-      if (!node) {
-          return;
-      }
-      if (!node.left && !node.right) {
-          this.printedData.push(node.data);
-          return;
-      }
+  traversalPreOrder(node: Node) {
+    if (!node) {
+      return;
+    }
+    if (!node.left && !node.right) {
       this.printedData.push(node.data);
-      this.traversalPreOrder(node.left);
-      this.traversalPreOrder(node.right);
+      return;
+    }
+    this.printedData.push(node.data);
+    this.traversalPreOrder(node.left);
+    this.traversalPreOrder(node.right);
   }
 
   printByOrderType(orderType: OrderType = OrderType.INORDER) {
     this.printedData = [];
     if (orderType === OrderType.INORDER) {
-        this.traversalInOrder(this.root);
-    }else if (orderType === OrderType.PREORDER) {
-        this.traversalPreOrder(this.root);
-    }else {
-        // preOrder
+      this.traversalInOrder(this.root);
+    } else if (orderType === OrderType.PREORDER) {
+      this.traversalPreOrder(this.root);
+    } else {
+      // preOrder
     }
   }
 }
