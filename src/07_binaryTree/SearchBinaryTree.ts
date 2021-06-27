@@ -157,6 +157,19 @@ export class SearchBinaryTree {
     this.traversalPreOrder(node.right);
   }
 
+  traversalPostOrder(node: Node) {
+    if (!node) {
+      return;
+    }
+    if (!node.left && !node.right) {
+      this.printedData.push(node.data);
+      return;
+    }
+    this.traversalPostOrder(node.left);
+    this.traversalPostOrder(node.right);
+    this.printedData.push(node.data);
+  }
+
   printByOrderType(orderType: OrderType = OrderType.INORDER) {
     this.printedData = [];
     if (orderType === OrderType.INORDER) {
@@ -164,7 +177,7 @@ export class SearchBinaryTree {
     } else if (orderType === OrderType.PREORDER) {
       this.traversalPreOrder(this.root);
     } else {
-      // preOrder
+      this.traversalPostOrder(this.root);
     }
   }
 }
