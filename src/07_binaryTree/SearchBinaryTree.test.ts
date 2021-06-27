@@ -5,7 +5,7 @@ describe("search binary tree", () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([8]);
   });
@@ -15,7 +15,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8]);
   });
@@ -26,7 +26,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(4);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([4, 6, 8]);
   });
@@ -37,7 +37,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.insert(9);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9]);
   });
@@ -49,7 +49,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(9);
     searchBinaryTree.insert(10);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9, 10]);
   });
@@ -65,7 +65,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(7);
     searchBinaryTree.insert(5);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([5, 6, 7, 8, 10, 19, 20, 25]);
   });
@@ -87,7 +87,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(10);
     searchBinaryTree.delete(10);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([]);
   });
@@ -99,7 +99,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.delete(8);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([6, 10]);
   });
@@ -111,7 +111,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(6);
     searchBinaryTree.delete(6);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([8, 10]);
   });
@@ -127,7 +127,7 @@ describe("search binary tree", () => {
     searchBinaryTree.insert(27);
     searchBinaryTree.delete(18);
 
-    searchBinaryTree.print();
+    searchBinaryTree.printByOrderType();
 
     expect(searchBinaryTree.printedData).toEqual([16, 17, 19, 25, 27, 33]);
   });

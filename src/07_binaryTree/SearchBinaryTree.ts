@@ -1,5 +1,11 @@
 import { Node } from "./Node";
 
+enum OrderType {
+    PREORDER,
+    INORDER,
+    POSTORDER
+}
+
 export class SearchBinaryTree {
   root = null;
   printedData: number[];
@@ -124,9 +130,7 @@ export class SearchBinaryTree {
       }
       return current.data;
   }
-  /**
-   * traversal in order
-   */
+
   traversalInOrder(node: Node) {
     if (!node) {
       return;
@@ -140,8 +144,27 @@ export class SearchBinaryTree {
     this.traversalInOrder(node.right);
   }
 
-  print() {
+  traversalPreOrder (node: Node){
+      if (!node) {
+          return;
+      }
+      if (!node.left && !node.right) {
+          this.printedData.push(node.data);
+          return;
+      }
+      this.printedData.push(node.data);
+      this.traversalPreOrder(node.left);
+      this.traversalPreOrder(node.right);
+  }
+
+  printByOrderType(orderType: OrderType = OrderType.INORDER) {
     this.printedData = [];
-    this.traversalInOrder(this.root);
+    if (orderType === OrderType.INORDER) {
+        this.traversalInOrder(this.root);
+    }else if (orderType === OrderType.PREORDER) {
+        this.traversalPreOrder(this.root);
+    }else {
+        // preOrder
+    }
   }
 }
