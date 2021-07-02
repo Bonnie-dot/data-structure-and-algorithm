@@ -141,23 +141,22 @@ export class SearchBinaryTree {
       return;
     }
     if (this.orderType === OrderType.PREORDER) {
-        this.printedData.push(node.data);
-        this.traversalByOrderType(node.left);
-        this.traversalByOrderType(node.right);
-    }else if (this.orderType === OrderType.INORDER) {
-        this.traversalByOrderType(node.left);
-        this.printedData.push(node.data);
-        this.traversalByOrderType(node.right);
-    }else {
-        this.traversalByOrderType(node.left);
-        this.traversalByOrderType(node.right);
-        this.printedData.push(node.data);
+      this.printedData.push(node.data);
+      this.traversalByOrderType(node.left);
+      this.traversalByOrderType(node.right);
+    } else if (this.orderType === OrderType.INORDER) {
+      this.traversalByOrderType(node.left);
+      this.printedData.push(node.data);
+      this.traversalByOrderType(node.right);
+    } else {
+      this.traversalByOrderType(node.left);
+      this.traversalByOrderType(node.right);
+      this.printedData.push(node.data);
     }
-
   }
 
-  printByOrderType(orderType: OrderType= OrderType.INORDER) {
-      this.orderType = orderType;
+  printByOrderType(orderType: OrderType = OrderType.INORDER) {
+    this.orderType = orderType;
     this.printedData = [];
     this.traversalByOrderType(this.root);
   }
