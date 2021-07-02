@@ -23,6 +23,16 @@ export class Heap {
     }
   }
 
+  sort (): number[] {
+    const i = 1;
+    const temp = [];
+    while (i < this.array.length) {
+      temp.push(this.array[i]);
+      this.deleteHeapTop();
+    }
+    return temp;
+  }
+
   print () {
     return this.array.slice(1);
   }
