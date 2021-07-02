@@ -3,26 +3,26 @@ export default class Stack {
   size: number;
   count: number = -1;
 
-  constructor(size: number) {
+  constructor (size: number) {
     this.size = size;
     this.array = new Array(size);
   }
 
-  push(value: unknown) {
+  push (value: unknown) {
     this.count++;
     if (this.size <= this.count) {
-      throw new Error(`stack overflow error`);
+      throw new Error('stack overflow error');
     }
     this.array[this.count] = value;
   }
 
-  getValues() {
+  getValues () {
     return this.array;
   }
 
-  pop() {
+  pop () {
     if (this.count === -1) {
-      throw new Error("stack is empty");
+      throw new Error('stack is empty');
     }
     delete this.array[this.count];
   }

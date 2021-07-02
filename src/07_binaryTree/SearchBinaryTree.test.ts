@@ -1,16 +1,17 @@
-import { OrderType, SearchBinaryTree } from "./SearchBinaryTree";
+import { OrderType, SearchBinaryTree } from './SearchBinaryTree';
 
-describe("search binary tree", () => {
-  it("should assign root when call insert", () => {
+describe('search binary tree', () => {
+  it('should assign root when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
 
     searchBinaryTree.printByOrderType();
 
+    // eslint-disable-next-line no-undef
     expect(searchBinaryTree.printedData).toEqual([8]);
   });
 
-  it("should assign left value when call insert", () => {
+  it('should assign left value when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
@@ -20,7 +21,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([6, 8]);
   });
 
-  it("should assign second level left value when call insert", () => {
+  it('should assign second level left value when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
@@ -31,7 +32,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([4, 6, 8]);
   });
 
-  it("should assign right value when call insert", () => {
+  it('should assign right value when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
@@ -42,7 +43,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9]);
   });
 
-  it("should assign second level right value when call insert", () => {
+  it('should assign second level right value when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(8);
     searchBinaryTree.insert(6);
@@ -54,7 +55,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([6, 8, 9, 10]);
   });
 
-  it("should assign multiple value value when call insert", () => {
+  it('should assign multiple value value when call insert', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.insert(20);
@@ -70,7 +71,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([5, 6, 7, 8, 10, 19, 20, 25]);
   });
 
-  it("should find value when call find", () => {
+  it('should find value when call find', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.insert(20);
@@ -82,7 +83,7 @@ describe("search binary tree", () => {
     expect(result.data).toEqual(8);
   });
 
-  it("should delete value when call delete with root", () => {
+  it('should delete value when call delete with root', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.delete(10);
@@ -92,7 +93,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([]);
   });
 
-  it("should delete value when call delete with having a child", () => {
+  it('should delete value when call delete with having a child', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.insert(8);
@@ -104,7 +105,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([6, 10]);
   });
 
-  it("should delete value when call delete with having no child", () => {
+  it('should delete value when call delete with having no child', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(10);
     searchBinaryTree.insert(8);
@@ -116,7 +117,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([8, 10]);
   });
 
-  it("should delete value when call delete with having two childs", () => {
+  it('should delete value when call delete with having two childs', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(16);
@@ -132,7 +133,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([16, 17, 19, 25, 27, 33]);
   });
 
-  it("should find max value when call findMaxNode with no right node", () => {
+  it('should find max value when call findMaxNode with no right node', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(16);
@@ -147,7 +148,7 @@ describe("search binary tree", () => {
     expect(result).toEqual(33);
   });
 
-  it("should find max value when call findMaxNode with having right node", () => {
+  it('should find max value when call findMaxNode with having right node', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(16);
@@ -163,7 +164,7 @@ describe("search binary tree", () => {
     expect(result).toEqual(90);
   });
 
-  it("should find min value when call findMinNode with having no left node", () => {
+  it('should find min value when call findMinNode with having no left node', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(36);
@@ -174,7 +175,7 @@ describe("search binary tree", () => {
     expect(result).toEqual(33);
   });
 
-  it("should find min value when call findMinNode with having left node", () => {
+  it('should find min value when call findMinNode with having left node', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(36);
@@ -189,7 +190,7 @@ describe("search binary tree", () => {
     expect(result).toEqual(25);
   });
 
-  it("should print by pre order when call printByOrderType", () => {
+  it('should print by pre order when call printByOrderType', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(36);
@@ -204,7 +205,7 @@ describe("search binary tree", () => {
     expect(searchBinaryTree.printedData).toEqual([33, 32, 26, 25, 27, 36, 38]);
   });
 
-  it("should print by post order when call printByOrderType", () => {
+  it('should print by post order when call printByOrderType', () => {
     const searchBinaryTree = new SearchBinaryTree();
     searchBinaryTree.insert(33);
     searchBinaryTree.insert(36);

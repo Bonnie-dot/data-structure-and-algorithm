@@ -2,20 +2,20 @@ export default class Sort {
   array: Array<number>;
   length: number;
 
-  constructor(array: Array<number>) {
+  constructor (array: Array<number>) {
     this.array = array;
     this.length = array.length;
   }
 
-  bubbleSort() {
-    if (this.length == 0) {
+  bubbleSort () {
+    if (this.length === 0) {
       return this.array;
     }
     for (let i = 0; i < this.length - 1; i++) {
       let isExchange = false;
       for (let j = this.length - 1; j >= i; j--) {
         if (this.array[j - 1] > this.array[j]) {
-          let temp = this.array[j - 1];
+          const temp = this.array[j - 1];
           this.array[j - 1] = this.array[j];
           this.array[j] = temp;
           isExchange = true;
@@ -28,14 +28,14 @@ export default class Sort {
     return this.array;
   }
 
-  insertionSort() {
+  insertionSort () {
     if (this.length <= 1) {
       return this.array;
     }
 
     for (let i = 1; i < this.length; i++) {
       let j = i - 1;
-      let value = this.array[i];
+      const value = this.array[i];
       for (; j >= 0; j--) {
         if (this.array[j] > value) {
           this.array[j + 1] = this.array[j];
@@ -48,7 +48,7 @@ export default class Sort {
     return this.array;
   }
 
-  selectSort() {
+  selectSort () {
     if (this.length <= 1) {
       return this.array;
     }
@@ -69,7 +69,7 @@ export default class Sort {
     return this.array;
   }
 
-  mergeSort(array): number[] {
+  mergeSort (array): number[] {
     if (array.length <= 1) return array;
     const mediumNumber = Math.floor(array.length / 2);
     return Sort.merge(
@@ -78,10 +78,10 @@ export default class Sort {
     );
   }
 
-  private static merge(array1: number[], array2: number[]): number[] {
-    let i = 0,
-      j = 0;
-    let temp = [];
+  private static merge (array1: number[], array2: number[]): number[] {
+    let i = 0;
+    let j = 0;
+    const temp = [];
     while (i <= array1.length - 1 && j <= array2.length - 1) {
       if (array1[i] < array2[j]) {
         temp.push(array1[i]);
@@ -94,11 +94,11 @@ export default class Sort {
     return temp.concat(array1.slice(i)).concat(array2.slice(j));
   }
 
-  quickSort() {
+  quickSort () {
     this.quickSortByPivot(this.array, 0, this.length - 1);
   }
 
-  private quickSortByPivot(
+  private quickSortByPivot (
     array: Array<number>,
     startIndex: number,
     endIndex: number
@@ -111,7 +111,7 @@ export default class Sort {
     this.quickSortByPivot(array, pivot + 1, array.length - 1);
   }
 
-  private partition(
+  private partition (
     array: Array<number>,
     startIndex: number,
     endIndex: number
@@ -128,26 +128,26 @@ export default class Sort {
     return left;
   }
 
-  private swap(array: Array<number>, index1: number, index2: number) {
+  private swap (array: Array<number>, index1: number, index2: number) {
     const temp = array[index1];
     array[index1] = array[index2];
     array[index2] = temp;
   }
 
-  countingSort() {
+  countingSort () {
     // 1.find maxValue and minValue
     const maxValue = this.findMaxValue();
 
-    //2.apply for a array for counting
+    // 2.apply for a array for counting
     let countingArray = this.sumTotalCountForEveryValue(maxValue);
 
     // 3. in turn ,accumulative
     countingArray = this.accumulative(countingArray);
 
-    //3.create a new array, according to countingArray sorting
+    // 3.create a new array, according to countingArray sorting
     const tempArray = new Array(this.length);
     this.array.forEach((value) => {
-      let index = countingArray[value] - 1;
+      const index = countingArray[value] - 1;
       tempArray[index] = value;
       countingArray[value]--;
     });
@@ -155,14 +155,14 @@ export default class Sort {
     this.array = tempArray;
   }
 
-  radixSort() {
+  radixSort () {
     const counter = [];
     let mod = 10;
     let dev = 1;
-    let count = this.findMaxValue().toString().length;
+    const count = this.findMaxValue().toString().length;
     for (let i = 0; i < count; i++, dev *= 10, mod *= 10) {
       for (let j = 0; j < this.array.length; j++) {
-        let bucket = ((this.array[j] % mod) / dev).toFixed(0);
+        const bucket = ((this.array[j] % mod) / dev).toFixed(0);
         if (counter[bucket] == null) {
           counter[bucket] = [];
         }
@@ -180,7 +180,7 @@ export default class Sort {
     }
   }
 
-  private sumTotalCountForEveryValue(maxValue: number) {
+  private sumTotalCountForEveryValue (maxValue: number) {
     const countingArray = new Array(maxValue + 1).fill(0);
     this.array.forEach((value) => {
       countingArray[value]++;
@@ -188,7 +188,7 @@ export default class Sort {
     return countingArray;
   }
 
-  private findMaxValue() {
+  private findMaxValue () {
     let maxValue = this.array[1];
     this.array.forEach((value) => {
       if (value > maxValue) {
@@ -198,7 +198,7 @@ export default class Sort {
     return maxValue;
   }
 
-  private accumulative(countingArray: any[]) {
+  private accumulative (countingArray: any[]) {
     for (let i = 1; i < countingArray.length; i++) {
       countingArray[i] = countingArray[i] + countingArray[i - 1];
     }

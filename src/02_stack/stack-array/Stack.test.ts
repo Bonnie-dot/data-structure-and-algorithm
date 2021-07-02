@@ -1,8 +1,8 @@
-import { describe, test } from "@jest/globals";
-import Stack from "./Stack";
+import { describe, test } from '@jest/globals';
+import Stack from './Stack';
 
-describe("test stack with related operation", () => {
-  test("should correctly push when add new value", () => {
+describe('test stack with related operation', () => {
+  test('should correctly push when add new value', () => {
     const stack = new Stack(2);
     stack.push(1);
     stack.push(2);
@@ -10,7 +10,7 @@ describe("test stack with related operation", () => {
     expect(result).toEqual([1, 2]);
   });
 
-  test("should correctly shift when remove new value", () => {
+  test('should correctly shift when remove new value', () => {
     const stack = new Stack(2);
     stack.push(1);
     stack.push(2);
@@ -19,18 +19,18 @@ describe("test stack with related operation", () => {
     expect(result).toEqual([1, undefined]);
   });
 
-  test("should throw new stack overflow error when count is greater than size", () => {
+  test('should throw new stack overflow error when count is greater than size', () => {
     const stack = new Stack(1);
     stack.push(1);
     expect(() => {
       stack.push(2);
-    }).toThrow("stack overflow error");
+    }).toThrow('stack overflow error');
   });
 
-  test("should throw new empty error when stack is empty", () => {
+  test('should throw new empty error when stack is empty', () => {
     const stack = new Stack(0);
     expect(() => {
       stack.pop();
-    }).toThrow("stack is empty");
+    }).toThrow('stack is empty');
   });
 });

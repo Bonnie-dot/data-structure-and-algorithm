@@ -1,21 +1,21 @@
-import { Stack } from "../stack-link/Stack";
-import Node from "../../common/Node";
+import { Stack } from '../stack-link/Stack';
+import Node from '../../common/Node';
 
 class BrowserForwardBack {
   private stack: Stack;
   private backStack: Stack;
 
-  constructor() {
+  constructor () {
     this.stack = new Stack();
     this.backStack = new Stack();
   }
 
-  forward(url: string) {
+  forward (url: string) {
     this.stack.push(new Node(url));
     this.backStack.clearStack();
   }
 
-  back() {
+  back () {
     const value = this.stack.pop();
     if (value !== -1) {
       this.backStack.push(value);
@@ -24,11 +24,11 @@ class BrowserForwardBack {
     }
   }
 
-  getValues(): string {
+  getValues (): string {
     return this.stack.getData();
   }
 
-  getBackValues(): string {
+  getBackValues (): string {
     return this.backStack.getData();
   }
 }

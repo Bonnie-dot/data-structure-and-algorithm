@@ -1,10 +1,10 @@
-import Node from "./Node";
+import Node from './Node';
 const MAX_LEVEL = 10;
 export class SkipList {
   totalLevel = 1;
   head = new Node(-1, 0);
   // so that index balance
-  static randomLevel() {
+  static randomLevel () {
     let level = 1;
     for (let i = 1; i < MAX_LEVEL; i++) {
       if (Math.random() < 0.5) {
@@ -14,7 +14,7 @@ export class SkipList {
     return level;
   }
 
-  find(value: number): number {
+  find (value: number): number {
     let p = this.head;
     for (let i = this.totalLevel - 1; i >= 0; i--) {
       while (p.refer[i] !== undefined && p.refer[i].data <= value) {
@@ -28,7 +28,7 @@ export class SkipList {
     }
   }
 
-  insert(value) {
+  insert (value) {
     const randomLevel = SkipList.randomLevel();
     const newNode = new Node(value, randomLevel);
     const update = new Array(randomLevel).fill(new Node(-1, 0));
@@ -50,9 +50,9 @@ export class SkipList {
     }
   }
 
-  remove(value) {
+  remove (value) {
     let p = this.head;
-    let removeValue = [];
+    const removeValue = [];
     for (let i = this.totalLevel - 1; i >= 0; i--) {
       while (p.refer[i] !== undefined && p.refer[i].data < value) {
         p = p.refer[i];
@@ -63,7 +63,8 @@ export class SkipList {
       removeValue[i].refer[i] = removeValue[i].refer[i].refer[i];
     }
   }
-  printAll() {
+
+  printAll () {
     let p = this.head;
     const tempArr = [];
     while (p.refer[0] !== undefined) {

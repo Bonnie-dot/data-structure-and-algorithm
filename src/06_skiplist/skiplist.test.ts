@@ -1,14 +1,14 @@
-import { SkipList } from "./skiplist";
+import { SkipList } from './skiplist';
 
-describe("SkipList", () => {
-  it("should insert single value correct when call insert", () => {
+describe('SkipList', () => {
+  it('should insert single value correct when call insert', () => {
     const skipList = new SkipList();
     skipList.insert(1);
     const result = skipList.printAll();
     expect(result).toEqual([1]);
   });
 
-  it("should insert multiple value correct when call insert", () => {
+  it('should insert multiple value correct when call insert', () => {
     const skipList = new SkipList();
     skipList.insert(1);
     skipList.insert(3);
@@ -17,7 +17,7 @@ describe("SkipList", () => {
     expect(result).toEqual([1, 2, 3]);
   });
 
-  it("should find value correct when call insert", () => {
+  it('should find value correct when call insert', () => {
     const skipList = new SkipList();
     skipList.insert(1);
     skipList.insert(3);
@@ -26,7 +26,7 @@ describe("SkipList", () => {
     expect(result).toEqual(2);
   });
 
-  it("should remove value correct when call insert", () => {
+  it('should remove value correct when call insert', () => {
     const skipList = new SkipList();
     skipList.insert(1);
     skipList.insert(3);

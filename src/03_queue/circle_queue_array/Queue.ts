@@ -4,12 +4,12 @@ export default class Queue {
   private trail = 0;
   private length = 0;
 
-  constructor(length: number) {
+  constructor (length: number) {
     this.length = length;
     this.array = new Array(length);
   }
 
-  enqueue(value: number): boolean {
+  enqueue (value: number): boolean {
     // Verify that the array is full
     const nextIndex = (this.trail + 1) % this.length;
     if (nextIndex === this.head) return false;
@@ -18,7 +18,7 @@ export default class Queue {
     return true;
   }
 
-  dequeue(): boolean {
+  dequeue (): boolean {
     // Verify that the array is empty
     if (this.trail === this.head) return false;
     this.array[this.head] = undefined;
@@ -26,7 +26,7 @@ export default class Queue {
     return true;
   }
 
-  get data() {
+  get data () {
     return this.array;
   }
 }

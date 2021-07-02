@@ -1,22 +1,22 @@
-import SingleLinked from "../../01_linkList/SingleLinked";
-import Node from "../../common/Node";
+import SingleLinked from '../../01_linkList/SingleLinked';
+import Node from '../../common/Node';
 
 export default class Queue {
   private singleLink: SingleLinked;
 
-  constructor() {
+  constructor () {
     this.singleLink = new SingleLinked();
   }
 
-  push(value: string) {
+  push (value: string) {
     this.singleLink.append(new Node(value));
   }
 
-  pop() {
+  pop () {
     this.singleLink.removeFirstNode();
   }
 
-  getData() {
+  getData () {
     return this.singleLink.getData();
   }
 }
