@@ -23,13 +23,9 @@ export class Graph {
       }
       const visited:boolean[] = new Array(this.vertexCount);
       const queue: number[] = [];
-      const prev = new Array(this.vertexCount);
+      const prev = new Array(this.vertexCount).fill(-1);
       visited[s] = true;
       queue.push(s);
-      for (let i = 0; i < this.vertexCount; i++) {
-        prev[i] = -1;
-      }
-
       while (queue.length !== 0) {
         const w = queue.shift();
         for (let i = 0; i < this.adjacencyMatrix[w].length; ++i) {
@@ -43,6 +39,27 @@ export class Graph {
             visited[q] = true;
             queue.push(q);
           }
+        }
+      }
+    }
+
+    depthFirstSearch (s: number, t: number) {
+      const visited:boolean[] = new Array(this.vertexCount);
+      const prev = new Array(this.vertexCount).fill(-1);
+      this.recurDfs(s, t, visited, prev);
+      this.print(prev, s, t);
+    }
+
+    recurDfs (w: number, t: number, visited: boolean[], prev: number[]) {
+      visited[w] = true;
+      if (w === t) {
+        return false;
+      }
+      for (let i = 0; i < this.adjacencyMatrix[w].length; i++) {
+        const q = this.adjacencyMatrix[w][i];
+        if (!visited[q]) {
+          prev[q] = w;
+          this.recurDfs(q, t, visited, prev);
         }
       }
     }
