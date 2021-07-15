@@ -2,8 +2,8 @@
  * @param mainString  All string
  * @param patternString Need to match string
  */
-export const bm = (mainString:string, patternString: string) => {
-  const index = 0; // index for mainString and patternString align
+export const matchWithBM = (mainString:string, patternString: string) => {
+  let index = 0; // index for mainString and patternString align
   const patternStringLength = patternString.length;
   while (index <= mainString.length - patternStringLength) {
     let i = 0;
@@ -13,7 +13,10 @@ export const bm = (mainString:string, patternString: string) => {
     if (i < 0) {
       return index;
     }
+    const hashTable = generateHashTable(patternString);
+    index = index + i - hashTable[mainString[i + index].charCodeAt(0)];
   }
+  return -1;
 };
 
 export const generateHashTable = (patternString: string): number[] => {
