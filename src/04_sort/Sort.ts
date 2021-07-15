@@ -2,12 +2,12 @@ export default class Sort {
   array: Array<number>;
   length: number;
 
-  constructor (array: Array<number>) {
+  constructor(array: Array<number>) {
     this.array = array;
     this.length = array.length;
   }
 
-  bubbleSort () {
+  bubbleSort() {
     if (this.length === 0) {
       return this.array;
     }
@@ -28,7 +28,7 @@ export default class Sort {
     return this.array;
   }
 
-  insertionSort () {
+  insertionSort() {
     if (this.length <= 1) {
       return this.array;
     }
@@ -48,7 +48,7 @@ export default class Sort {
     return this.array;
   }
 
-  selectSort () {
+  selectSort() {
     if (this.length <= 1) {
       return this.array;
     }
@@ -69,7 +69,7 @@ export default class Sort {
     return this.array;
   }
 
-  mergeSort (array): number[] {
+  mergeSort(array): number[] {
     if (array.length <= 1) return array;
     const mediumNumber = Math.floor(array.length / 2);
     return Sort.merge(
@@ -78,7 +78,7 @@ export default class Sort {
     );
   }
 
-  private static merge (array1: number[], array2: number[]): number[] {
+  private static merge(array1: number[], array2: number[]): number[] {
     let i = 0;
     let j = 0;
     const temp = [];
@@ -94,11 +94,11 @@ export default class Sort {
     return temp.concat(array1.slice(i)).concat(array2.slice(j));
   }
 
-  quickSort () {
+  quickSort() {
     this.quickSortByPivot(this.array, 0, this.length - 1);
   }
 
-  private quickSortByPivot (
+  private quickSortByPivot(
     array: Array<number>,
     startIndex: number,
     endIndex: number
@@ -111,7 +111,7 @@ export default class Sort {
     this.quickSortByPivot(array, pivot + 1, array.length - 1);
   }
 
-  private partition (
+  private partition(
     array: Array<number>,
     startIndex: number,
     endIndex: number
@@ -128,13 +128,13 @@ export default class Sort {
     return left;
   }
 
-  private swap (array: Array<number>, index1: number, index2: number) {
+  private swap(array: Array<number>, index1: number, index2: number) {
     const temp = array[index1];
     array[index1] = array[index2];
     array[index2] = temp;
   }
 
-  countingSort () {
+  countingSort() {
     // 1.find maxValue and minValue
     const maxValue = this.findMaxValue();
 
@@ -155,7 +155,7 @@ export default class Sort {
     this.array = tempArray;
   }
 
-  radixSort () {
+  radixSort() {
     const counter = [];
     let mod = 10;
     let dev = 1;
@@ -180,7 +180,7 @@ export default class Sort {
     }
   }
 
-  private sumTotalCountForEveryValue (maxValue: number) {
+  private sumTotalCountForEveryValue(maxValue: number) {
     const countingArray = new Array(maxValue + 1).fill(0);
     this.array.forEach((value) => {
       countingArray[value]++;
@@ -188,7 +188,7 @@ export default class Sort {
     return countingArray;
   }
 
-  private findMaxValue () {
+  private findMaxValue() {
     let maxValue = this.array[1];
     this.array.forEach((value) => {
       if (value > maxValue) {
@@ -198,7 +198,7 @@ export default class Sort {
     return maxValue;
   }
 
-  private accumulative (countingArray: any[]) {
+  private accumulative(countingArray: any[]) {
     for (let i = 1; i < countingArray.length; i++) {
       countingArray[i] = countingArray[i] + countingArray[i - 1];
     }

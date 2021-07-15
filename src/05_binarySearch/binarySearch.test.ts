@@ -4,7 +4,7 @@ import {
   searchValueWithLastLessOrEqualValue,
   searchValueWithLastValue,
   searchValueWithLoop,
-  searchValueWithRecursive
+  searchValueWithRecursive,
 } from './binarySearch';
 import { describe } from '@jest/globals';
 

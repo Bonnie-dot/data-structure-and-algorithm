@@ -7,7 +7,7 @@ export default class SingleLinked {
     this.head = new Node('head');
   }
 
-  findLastNode (): Node {
+  findLastNode(): Node {
     let currentValue: Node = this.head;
     while (currentValue.next !== null) {
       currentValue = currentValue.next;

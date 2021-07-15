@@ -2,13 +2,17 @@
  * @param mainString  All string
  * @param patternString Need to match string
  */
+export const matchWithBM = (mainString: string, patternString: string) => {
+  let index = 0; // index for mainString and patternString align
 export const matchWithBadCharacterRule = (mainString:string, patternString: string) => {
   let index = 0; // index for mainString and patternString align
   const patternStringLength = patternString.length;
   while (index <= mainString.length - patternStringLength) {
     let i = 0;
     for (i = patternStringLength - 1; i >= 0; i--) {
-      if (mainString[i + index] !== patternString[i]) { break; }
+      if (mainString[i + index] !== patternString[i]) {
+        break;
+      }
     }
     if (i < 0) {
       return index;

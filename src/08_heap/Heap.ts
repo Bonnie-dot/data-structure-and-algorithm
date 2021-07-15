@@ -1,7 +1,7 @@
 export class Heap {
   private array: number[] = [null];
 
-  insert (value: number) {
+  insert(value: number) {
     this.array.push(value);
     let i = this.array.length - 1;
     const parent = Math.floor(i / 2);
@@ -11,7 +11,7 @@ export class Heap {
     }
   }
 
-  deleteHeapTop () {
+  deleteHeapTop() {
     const count = this.array.length - 1;
     this.array[1] = this.array[count];
     this.array.splice(count, 1);
@@ -23,7 +23,7 @@ export class Heap {
     }
   }
 
-  sort (): number[] {
+  sort(): number[] {
     const i = 1;
     const temp = [];
     while (i < this.array.length) {
@@ -33,11 +33,11 @@ export class Heap {
     return temp;
   }
 
-  print () {
+  print() {
     return this.array.slice(1);
   }
 
-  swap (number1: number, number2: number) {
+  swap(number1: number, number2: number) {
     const temp = this.array[number1];
     this.array[number1] = this.array[number2];
     this.array[number2] = temp;

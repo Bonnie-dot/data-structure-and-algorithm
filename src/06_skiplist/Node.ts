@@ -7,7 +7,7 @@ export default class Node {
   // record horizontal index
   refer = new Array(MAX_LEVEL);
 
-  constructor (value: number, level: number) {
+  constructor(value: number, level: number) {
     this.data = value;
     this.level = level;
   }

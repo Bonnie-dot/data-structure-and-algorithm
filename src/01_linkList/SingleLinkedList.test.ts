@@ -86,11 +86,14 @@ describe('test single linked list operation', () => {
             data: '2',
             next: {
               data: '3',
-              next: { data: '4', next: { data: '4', next: null } }
-            }
-          }
-        }
-      }
+              next: {
+                data: '4',
+                next: { data: '4', next: null },
+              },
+            },
+          },
+        },
+      },
     });
   });
 
@@ -118,7 +121,10 @@ describe('test single linked list operation', () => {
     const result = singleLinked.findMiddleValue();
     expect(result).toEqual({
       data: '3',
-      next: { data: '4', next: { data: '5', next: { data: '6', next: null } } }
+      next: {
+        data: '4',
+        next: { data: '5', next: { data: '6', next: null } },
+      },
     });
   });
 

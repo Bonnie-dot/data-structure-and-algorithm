@@ -11,7 +11,7 @@ export class SearchBinaryTree {
   printedData: number[];
   orderType = OrderType.INORDER;
 
-  insert (data: number) {
+  insert(data: number) {
     const node = new Node(data);
     if (this.root === null) {
       this.root = node;
@@ -35,7 +35,7 @@ export class SearchBinaryTree {
     }
   }
 
-  find (data: number): Node {
+  find(data: number): Node {
     let current = this.root;
     while (current) {
       if (current.data > data) {
@@ -49,7 +49,7 @@ export class SearchBinaryTree {
     return null;
   }
 
-  findParent (data: number): Node {
+  findParent(data: number): Node {
     let current = this.root;
     if (!current.left && !current.right) {
       return null;
@@ -68,7 +68,7 @@ export class SearchBinaryTree {
     }
   }
 
-  delete (value: number) {
+  delete(value: number) {
     const parentNode = this.findParent(value);
     if (!parentNode) {
       this.root = null;
@@ -83,7 +83,7 @@ export class SearchBinaryTree {
     }
   }
 
-  deleteWithNoChildOrOneChild (parentNode: Node, node: Node) {
+  deleteWithNoChildOrOneChild(parentNode: Node, node: Node) {
     let child: Node;
     if (node.left) {
       child = node.left;
@@ -99,7 +99,7 @@ export class SearchBinaryTree {
     }
   }
 
-  deleteWithTwoChild (node: Node) {
+  deleteWithTwoChild(node: Node) {
     let current = node.right;
     let leftParent;
     while (current.left) {
@@ -110,7 +110,7 @@ export class SearchBinaryTree {
     leftParent.left = null;
   }
 
-  findMaxNode (): number {
+  findMaxNode(): number {
     let current = this.root;
     if (!current.right) {
       return current.data;
@@ -121,7 +121,7 @@ export class SearchBinaryTree {
     return current.data;
   }
 
-  findMinNode (): number {
+  findMinNode(): number {
     let current = this.root;
     if (!current.left) {
       return current.data;
@@ -132,7 +132,7 @@ export class SearchBinaryTree {
     return current.data;
   }
 
-  traversalByOrderType (node: Node) {
+  traversalByOrderType(node: Node) {
     if (!node) {
       return;
     }
@@ -155,7 +155,7 @@ export class SearchBinaryTree {
     }
   }
 
-  printByOrderType (orderType: OrderType = OrderType.INORDER) {
+  printByOrderType(orderType: OrderType = OrderType.INORDER) {
     this.orderType = orderType;
     this.printedData = [];
     this.traversalByOrderType(this.root);

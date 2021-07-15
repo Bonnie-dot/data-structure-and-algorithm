@@ -4,12 +4,12 @@ import SingleLinked from '../../01_linkList/SingleLinked';
 export class Stack {
   private singLink = new SingleLinked();
 
-  push (node: Node) {
+  push(node: Node) {
     const lastNode = this.singLink.findLastNode();
     lastNode.next = node;
   }
 
-  pop () {
+  pop() {
     const previousNode = this.singLink.findPreviousNode(
       this.singLink.findLastNode()
     );
@@ -22,11 +22,11 @@ export class Stack {
     }
   }
 
-  getData () {
+  getData() {
     return this.singLink.getData();
   }
 
-  clearStack () {
+  clearStack() {
     this.singLink.clearLink();
   }
 }
