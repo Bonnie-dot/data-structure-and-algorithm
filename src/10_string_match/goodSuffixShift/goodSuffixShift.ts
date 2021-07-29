@@ -1,3 +1,5 @@
+import { generateHashTable } from '../badCharacterRule/badCharacterRule';
+
 export class GoodSuffixShift {
   patterString: string;
   patternStringLength: number;
@@ -27,5 +29,42 @@ export class GoodSuffixShift {
     }
   }
 
+  matchWithBM (mainString: string) {
+    // 1. found the bad character
+    let matchMainStringWithPatternString = 0;
+    while (matchMainStringWithPatternString <= mainString.length - this.patternStringLength) {
+      let j = this.patternStringLength - 1;
+      for (;j >= 0; j--) {
+        if (mainString[matchMainStringWithPatternString + j] !== this.patterString[j]) { break; }
+      }
+      // 2.1 all match
+      if (j === -1) {
+        return matchMainStringWithPatternString;
+      }
+      // 2.2 not match;compare bad character rule with good suffix shift
+      const hashTable = generateHashTable(this.patterString);
+      const badCharacterNeedMoveNumber = j - hashTable[mainString[matchMainStringWithPatternString + j].charCodeAt(0)];
+      let goodSuffixShiftNeedMoveNumber = 0;
+      if (j < this.patternStringLength - 1) { // make sure have suffix
+        goodSuffixShiftNeedMoveNumber = this.moveByGoodSuffix(j);
+      }
+      // because of under zero, so get the max value
+      matchMainStringWithPatternString = matchMainStringWithPatternString + Math.max(badCharacterNeedMoveNumber, goodSuffixShiftNeedMoveNumber);
+    }
+    return -1;
+  }
 
+  moveByGoodSuffix (badCharacterIndex: number):number {
+    const matchLength = this.patternStringLength - badCharacterIndex - 1;
+    if (this.suffix[matchLength] !== -1) {
+      return badCharacterIndex - this.suffix[matchLength] + 1;
+    } else {
+      for (let i = badCharacterIndex + 2; i < this.patternStringLength; i++) {
+        if (this.prefix[i] === true) {
+          return i;
+        }
+      }
+      return this.patternStringLength;
+    }
+  }
 }
