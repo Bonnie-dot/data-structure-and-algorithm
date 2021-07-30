@@ -35,4 +35,11 @@ describe('goodSuffixShift', () => {
 
     expect(matchIndex).toEqual(3);
   });
+
+  it('should return move index when call moveByGoodSuffixShift with having more than one good suffix', function () {
+    const goodSuffixShift = new GoodSuffixShift('ababab');
+    const matchIndex = goodSuffixShift.matchWithBM('abbabcabc');
+
+    expect(matchIndex).toEqual(3);
+  });
 });

@@ -4,6 +4,7 @@ export class GoodSuffixShift {
   patterString: string;
   patternStringLength: number;
   suffix: number[];
+  // record prefix child string starts with the first character
   prefix: boolean[];
 
   constructor (patternString:string) {
