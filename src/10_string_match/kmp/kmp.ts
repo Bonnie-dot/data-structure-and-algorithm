@@ -1,3 +1,4 @@
+// recommend this article: https://www.zhihu.com/question/21923021
 export class Kmp {
     patternString: string;
     mainString: string;
@@ -13,6 +14,22 @@ export class Kmp {
       this.nexts = new Array(this.patternStringLength).fill(-1);
 
       this.getNexts();
+    }
+
+    matchWithkmp () {
+      let j = 0;
+      for (let i = 0; i < this.mainStringLength; i++) {
+        while (j > 0 && this.mainString[i] !== this.patternString[j]) {
+          j = this.nexts[j - 1] + 1;
+        }
+        if (this.mainString[i] === this.patternString[j]) {
+          j++;
+        }
+        if (j === this.patternStringLength) {
+          return i - j + 1;
+        }
+      }
+      return -1;
     }
 
     getNexts () {
