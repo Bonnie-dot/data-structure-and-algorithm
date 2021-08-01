@@ -1,5 +1,5 @@
 import SingleLinked from '../../01_linkList/SingleLinked';
-import Node from '../../common/Node';
+import Node from '../../00_common/Node';
 
 export default class Queue {
   private singleLink: SingleLinked;

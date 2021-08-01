@@ -1,4 +1,4 @@
-import Node from '../common/Node';
+import Node from '../00_common/Node';
 
 export default class SingleLinked {
   head: Node;

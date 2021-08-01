@@ -56,8 +56,8 @@ JavaScript+TypeScript+Jest
     │   ├── Heap.test.ts
     │   └── Heap.ts
     ├── 09_graph
-    │   ├── graph.test.ts
-    │   └── graph.ts
+    │   ├── trie.test.ts
+    │   └── trie.ts
     ├── 10_string_match
     │   ├── badCharacterRule
     │   │   ├── badCharacterRule.test.ts

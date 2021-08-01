@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals';
 import { Stack } from './Stack';
-import Node from '../../common/Node';
+import Node from '../../00_common/Node';
 
 describe('test stack with related operation', () => {
   test('should correctly push when add new value', () => {

@@ -1,6 +1,6 @@
 import SingleLinked from './SingleLinked';
 import { describe, test } from '@jest/globals';
-import Node from '../common/Node';
+import Node from '../00_common/Node';
 
 describe('test single linked list operation', () => {
   test('should append a given node ', () => {

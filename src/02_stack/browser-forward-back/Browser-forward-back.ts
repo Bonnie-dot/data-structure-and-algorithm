@@ -1,5 +1,5 @@
 import { Stack } from '../stack-link/Stack';
-import Node from '../../common/Node';
+import Node from '../../00_common/Node';
 
 class BrowserForwardBack {
   private stack: Stack;

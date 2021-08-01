@@ -1,4 +1,4 @@
-import Node from '../../common/Node';
+import Node from '../../00_common/Node';
 import SingleLinked from '../../01_linkList/SingleLinked';
 
 export class Stack {
