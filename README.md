@@ -86,4 +86,4 @@ JavaScript+TypeScript+Jest
 - [二叉树](/src/07_binaryTree)
 - [堆](/src/08_heap)
 - [图](/src/09_graph)
-- [字符串匹配BM和KMP](/src/10_string_match)
+- [字符串匹配BM和KMP，前缀字符匹配Trie](/src/10_string_match)
