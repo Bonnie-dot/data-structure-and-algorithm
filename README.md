@@ -87,7 +87,8 @@ JavaScript+TypeScript+Jest
 - [堆](/src/08_heap)
 ### [图的广度优先和深度优先，Prim(minimum Cost Spanning Tree)](/src/09_graph)
  - 最小代价生成树图解
- ![minimunCostSpaningTree](https://user-images.githubusercontent.com/19220476/128634405-d04fdf3e-8231-4735-aa9d-050055bf5770.png)
+![minimunCostSpaningTree](https://user-images.githubusercontent.com/19220476/128635541-b8b8378a-8c87-4b05-a62b-0cc8383faf04.png)
+
 
 ### [字符串匹配BM和KMP，前缀字符匹配Trie](/src/10_string_match)
 - BM 图解
