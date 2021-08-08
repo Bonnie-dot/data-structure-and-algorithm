@@ -85,5 +85,13 @@ JavaScript+TypeScript+Jest
 - [跳表](/src/06_skiplist)
 - [二叉树](/src/07_binaryTree)
 - [堆](/src/08_heap)
-- [图的广度优先和深度优先，Prim(minimum Cost Spanning Tree)](/src/09_graph)
-- [字符串匹配BM和KMP，前缀字符匹配Trie](/src/10_string_match)
+### [图的广度优先和深度优先，Prim(minimum Cost Spanning Tree)](/src/09_graph)
+ - 最小代价生成树图解
+ ![minimunCostSpaningTree](https://user-images.githubusercontent.com/19220476/128634405-d04fdf3e-8231-4735-aa9d-050055bf5770.png)
+
+### [字符串匹配BM和KMP，前缀字符匹配Trie](/src/10_string_match)
+- BM 图解
+![bm](https://user-images.githubusercontent.com/19220476/128634454-5a3f21c7-1f57-480b-894c-a29022712924.png)
+- KMP 图解
+![kmp](https://user-images.githubusercontent.com/19220476/128634444-1df452ef-6b81-40cd-9e73-9140e7fc4da3.png)
+
