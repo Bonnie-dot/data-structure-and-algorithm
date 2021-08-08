@@ -85,5 +85,5 @@ JavaScript+TypeScript+Jest
 - [跳表](/src/06_skiplist)
 - [二叉树](/src/07_binaryTree)
 - [堆](/src/08_heap)
-- [图](/src/09_graph)
+- [图的广度优先和深度优先，Prim(minimum Cost Spanning Tree)](/src/09_graph)
 - [字符串匹配BM和KMP，前缀字符匹配Trie](/src/10_string_match)
