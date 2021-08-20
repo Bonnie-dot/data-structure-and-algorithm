@@ -2,9 +2,10 @@
  * @param mainString  All string
  * @param patternString Need to match string
  */
-export const matchWithBM = (mainString: string, patternString: string) => {
-  let index = 0; // index for mainString and patternString align
-export const matchWithBadCharacterRule = (mainString:string, patternString: string) => {
+export const matchWithBadCharacterRule = (
+  mainString: string,
+  patternString: string
+) => {
   let index = 0; // index for mainString and patternString align
   const patternStringLength = patternString.length;
   while (index <= mainString.length - patternStringLength) {

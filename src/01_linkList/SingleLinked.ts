@@ -3,7 +3,7 @@ import Node from '../00_common/Node';
 export default class SingleLinked {
   head: Node;
 
-  constructor () {
+  constructor() {
     this.head = new Node('head');
   }
 
@@ -15,13 +15,13 @@ export default class SingleLinked {
     return currentValue;
   }
 
-  removeFirstNode () {
+  removeFirstNode() {
     this.head.next = this.head.next.next;
   }
 
-  getData () {
-    let currentNode = this.head.next;
-    if (currentNode === null) {
+  getData() {
+    let currentNode = this.head?.next;
+    if (!currentNode) {
       return null;
     }
     const tempArray = [];
@@ -37,12 +37,12 @@ export default class SingleLinked {
    * append after the last node
    * @param node
    */
-  append (node: Node) {
+  append(node: Node) {
     const lastNode = this.findLastNode();
     lastNode.next = node;
   }
 
-  findByValue (node: Node): Node {
+  findByValue(node: Node): Node {
     let currentValue = this.head.next;
     while (currentValue !== null && currentValue !== node) {
       currentValue = currentValue.next;
@@ -54,7 +54,7 @@ export default class SingleLinked {
    * remove a given node
    * @param node
    */
-  remove (node: Node) {
+  remove(node: Node) {
     const previousNode = this.findPreviousValue(node);
     if (previousNode) {
       previousNode.next = previousNode.next.next;
@@ -63,7 +63,7 @@ export default class SingleLinked {
     }
   }
 
-  private findPreviousValue (node: Node): Node {
+  private findPreviousValue(node: Node): Node {
     let currentValue = this.head;
     //  check first node
     if (this.head.next === node) {
@@ -80,7 +80,7 @@ export default class SingleLinked {
    * @param newNode
    * @param node
    */
-  insert (newNode: Node, node: Node) {
+  insert(newNode: Node, node: Node) {
     const previousValue = this.findPreviousValue(node);
     if (previousValue) {
       newNode.next = previousValue.next;
@@ -90,7 +90,7 @@ export default class SingleLinked {
     }
   }
 
-  reverse () {
+  reverse() {
     // 哨兵节点
     const root = new Node('head');
     let currentValue = this.head.next;
@@ -104,7 +104,7 @@ export default class SingleLinked {
   }
 
   // 参考（https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/）
-  checkCycleStart () {
+  checkCycleStart() {
     let fast = this.head;
     let slow = this.head;
     while (fast !== null && fast.next !== null) {
@@ -122,7 +122,7 @@ export default class SingleLinked {
     return fast.data;
   }
 
-  mergeSortedList (list1: SingleLinked, list2: SingleLinked) {
+  mergeSortedList(list1: SingleLinked, list2: SingleLinked) {
     if (!list1) {
       return list2;
     }
@@ -151,7 +151,7 @@ export default class SingleLinked {
     return root;
   }
 
-  deleteByLastIndex (index: number) {
+  deleteByLastIndex(index: number) {
     this.reverse();
     let currentValue = this.head.next;
     let pos = 1;
@@ -166,7 +166,7 @@ export default class SingleLinked {
   }
 
   // 参考：https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/lian-biao-de-zhong-jian-jie-dian-by-leetcode-solut/
-  findMiddleValue () {
+  findMiddleValue() {
     let fast = this.head;
     let slow = this.head;
     while (fast.next !== null) {
@@ -176,7 +176,7 @@ export default class SingleLinked {
     return slow;
   }
 
-  findPreviousNode (node: Node) {
+  findPreviousNode(node: Node) {
     let currentValue = this.head;
     let nextValue = currentValue.next;
     if (nextValue === node) {
@@ -194,14 +194,7 @@ export default class SingleLinked {
     }
   }
 
-  clearLink () {
-    let p = this.head.next;
-    let q: Node;
-    while (p) {
-      q = p.next;
-      p = null;
-      q = p;
-    }
-    this.head = null;
+  clearLink() {
+    this.head.next = null;
   }
 }

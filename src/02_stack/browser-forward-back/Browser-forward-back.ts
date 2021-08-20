@@ -12,7 +12,9 @@ class BrowserForwardBack {
 
   forward(url: string) {
     this.stack.push(new Node(url));
-    this.backStack.clearStack();
+    if (this.backStack.getData()) {
+      this.backStack.clearStack();
+    }
   }
 
   back() {

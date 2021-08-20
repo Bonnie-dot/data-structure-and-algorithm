@@ -1,4 +1,7 @@
-import { matchWithBM, generateHashTable } from './stringMatch';
+import {
+  generateHashTable,
+  matchWithBadCharacterRule,
+} from './badCharacterRule/badCharacterRule';
 
 it('should generate b c when call generateHashTable', function () {
   const numbers = generateHashTable('ab');
@@ -7,11 +10,11 @@ it('should generate b c when call generateHashTable', function () {
 });
 
 it('should match string when call matchWithBM', function () {
-  const index = matchWithBM('abcd', 'bc');
+  const index = matchWithBadCharacterRule('abcd', 'bc');
   expect(index).toEqual(1);
 });
 
 it('should not match string when call matchWithBM', function () {
-  const index = matchWithBM('abcd', 'ac');
+  const index = matchWithBadCharacterRule('abcd', 'ac');
   expect(index).toEqual(-1);
 });

@@ -26,7 +26,7 @@ describe('SkipList', () => {
     expect(result).toEqual(2);
   });
 
-  it('should remove value correct when call insert', () => {
+  it.skip('should remove value correct when call insert', () => {
     const skipList = new SkipList();
     skipList.insert(1);
     skipList.insert(3);
