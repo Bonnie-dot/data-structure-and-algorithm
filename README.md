@@ -95,7 +95,7 @@ JavaScript+TypeScript+Jest
 - [二叉树](/src/07_binaryTree)
 - [堆](/src/08_heap)
 
-### [图的广度优先和深度优先，Prim and Kruskal for Minimum Cost Spanning Tree,最短路径](/src/09_graph)
+### [图的广度优先和深度优先，Prim and Kruskal for Minimum Cost Spanning Tree,最短路径,拓扑排序](/src/09_graph)
 
 - 最小代价生成树图解
   ![minimunCostSpaningTree](https://user-images.githubusercontent.com/19220476/128635541-b8b8378a-8c87-4b05-a62b-0cc8383faf04.png)
