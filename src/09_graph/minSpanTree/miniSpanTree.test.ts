@@ -1,7 +1,7 @@
 import { GraphAdjacencyList } from './miniSpanTree';
 
 describe('minSpanTree', () => {
-  it('should find min span tree when call findMinSpanTreeWithPrim', function () {
+  test('should find min span tree when call findMinSpanTreeWithPrim', function () {
     const graphAdjacencyList = new GraphAdjacencyList();
     graphAdjacencyList.initAdjacency();
     const path = graphAdjacencyList.findMiniSpanTreeWithPrim();
@@ -9,7 +9,7 @@ describe('minSpanTree', () => {
     expect(path).toBe('0105188216677473');
   });
 
-  it('should find min span tree when call findMiniSpanTreeWithKruskal', function () {
+  test('should find min span tree when call findMiniSpanTreeWithKruskal', function () {
     const graphAdjacencyList = new GraphAdjacencyList();
     graphAdjacencyList.initEdges();
     const path = graphAdjacencyList.findMiniSpanTreeWithKruskal();

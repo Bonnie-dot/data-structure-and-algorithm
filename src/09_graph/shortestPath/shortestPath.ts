@@ -87,7 +87,6 @@ export class GraphAdjacencyList {
     }
 
     concatShortestPath (shortestPathsVertexs:number[]) {
-      console.log(shortestPathsVertexs);
       const shortestPaths = [];
       shortestPathsVertexs.forEach((item, index) => {
         if (index >= 1) {

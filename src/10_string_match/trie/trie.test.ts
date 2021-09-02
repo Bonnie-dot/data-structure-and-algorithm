@@ -1,7 +1,7 @@
 import { Trie } from './trie';
 
 describe('trie', () => {
-  it('should find text correctly when call insert', function () {
+  test('should find text correctly when call insert', function () {
     const trie = new Trie();
     trie.insert('hello');
     trie.insert('her');

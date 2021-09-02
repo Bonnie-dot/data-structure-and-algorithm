@@ -31,6 +31,7 @@ export class SkipList {
   insert(value) {
     const randomLevel = SkipList.randomLevel();
     const newNode = new Node(value, randomLevel);
+    // vertical direction array
     const update = new Array(randomLevel).fill(new Node(-1, 0));
     let p = this.head;
     // save next node refer

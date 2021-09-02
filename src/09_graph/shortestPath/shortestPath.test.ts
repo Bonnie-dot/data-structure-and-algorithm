@@ -1,6 +1,6 @@
 import { GraphAdjacencyList } from './shortestPath';
 
-it('should return the shortest path from V0 to Vn when call findShortestPath', function () {
+test('should return the shortest path from V0 to Vn when call findShortestPath', function () {
   const graphAdjacencyList = new GraphAdjacencyList();
   const result = graphAdjacencyList.findShortestPath();
 

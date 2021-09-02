@@ -1,7 +1,7 @@
 import BrowserForwardBack from './Browser-forward-back';
 
 describe('mock browser forward and back behavior', () => {
-  it('should forward successfully when given a', () => {
+  test('should forward successfully when given a', () => {
     const browserForwardBack = new BrowserForwardBack();
     browserForwardBack.forward('a');
     browserForwardBack.forward('b');
@@ -9,7 +9,7 @@ describe('mock browser forward and back behavior', () => {
     expect(browserForwardBack.getValues()).toEqual('a,b');
   });
 
-  it('should back successfully when back', () => {
+  test('should back successfully when back', () => {
     const browserForwardBack = new BrowserForwardBack();
     browserForwardBack.forward('a');
     browserForwardBack.forward('b');
@@ -19,7 +19,7 @@ describe('mock browser forward and back behavior', () => {
     expect(browserForwardBack.getValues()).toEqual('a');
   });
 
-  it('should back b when forward a,b,c,and back b,and forward d', () => {
+  test('should back b when forward a,b,c,and back b,and forward d', () => {
     const browserForwardBack = new BrowserForwardBack();
     browserForwardBack.forward('a');
     browserForwardBack.forward('b');

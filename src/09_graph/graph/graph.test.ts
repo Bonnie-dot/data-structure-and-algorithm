@@ -1,7 +1,7 @@
 import { Graph } from './graph';
 
 describe('graph', () => {
-  it('should add edge correctly when call addEdge', () => {
+  test('should add edge correctly when call addEdge', () => {
     const graph = new Graph(8);
     graph.addEdge(0, 1);
 
@@ -9,7 +9,7 @@ describe('graph', () => {
     expect(graph.adjacencyMatrix[1]).toEqual([0]);
   });
 
-  it('should breadth first search when call breadthFirstSearch ', function () {
+  test('should breadth first search when call breadthFirstSearch ', function () {
     const graph = new Graph(8);
     graph.addEdge(0, 1);
     graph.addEdge(0, 3);
@@ -26,7 +26,7 @@ describe('graph', () => {
     expect(graph.path).toEqual('0146');
   });
 
-  it('should depth first search when call depthFirstSearch ', () => {
+  test('should depth first search when call depthFirstSearch ', () => {
     const graph = new Graph(8);
     graph.addEdge(0, 1);
     graph.addEdge(0, 3);

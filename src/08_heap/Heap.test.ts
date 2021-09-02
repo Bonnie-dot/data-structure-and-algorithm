@@ -1,7 +1,7 @@
 import { Heap } from './Heap';
 
 describe('heap operator', () => {
-  it('should insert correct when call insert', () => {
+  test('should insert correct when call insert', () => {
     const heap = new Heap();
     heap.insert(1);
     const array = heap.print();
@@ -9,7 +9,7 @@ describe('heap operator', () => {
     expect(array).toEqual([1]);
   });
 
-  it('should insert two values by order when call insert', () => {
+  test('should insert two values by order when call insert', () => {
     const heap = new Heap();
     heap.insert(1);
     heap.insert(2);
@@ -18,7 +18,7 @@ describe('heap operator', () => {
     expect(array).toEqual([2, 1]);
   });
 
-  it('should insert four values by order when call insert', () => {
+  test('should insert four values by order when call insert', () => {
     const heap = new Heap();
     heap.insert(1);
     heap.insert(2);
@@ -29,7 +29,7 @@ describe('heap operator', () => {
     expect(array).toEqual([6, 4, 2, 1]);
   });
 
-  it('should insert multiple values by order when call insert', () => {
+  test('should insert multiple values by order when call insert', () => {
     const heap = new Heap();
     heap.insert(1);
     heap.insert(2);
@@ -41,7 +41,7 @@ describe('heap operator', () => {
     expect(array).toEqual([6, 4, 2, 1, 3]);
   });
 
-  it('should delete top values when call deleteHeapTop', () => {
+  test('should delete top values when call deleteHeapTop', () => {
     const heap = new Heap();
     heap.insert(1);
     heap.insert(2);
@@ -54,7 +54,7 @@ describe('heap operator', () => {
     expect(array).toEqual([4, 3, 2, 1]);
   });
 
-  it('should sort values when call sort', () => {
+  test('should sort values when call sort', () => {
     const heap = new Heap();
     heap.insert(1);
     heap.insert(2);
