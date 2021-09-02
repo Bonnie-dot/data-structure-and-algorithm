@@ -1,9 +1,9 @@
 export default class Node {
-  data: string;
-  next: Node;
+    data: string;
+    next: Node;
 
-  constructor(data: string) {
-    this.data = data;
-    this.next = null;
-  }
+    constructor(data: string) {
+        this.data = data;
+        this.next = null;
+    }
 }

@@ -6,43 +6,45 @@ export class Kmp {
     mainStringLength: number;
     nexts: number[];
 
-    constructor (mainString: string, patternString: string) {
-      this.mainString = mainString;
-      this.mainStringLength = mainString.length;
-      this.patternString = patternString;
-      this.patternStringLength = patternString.length;
-      this.nexts = new Array(this.patternStringLength).fill(-1);
+    constructor(mainString: string, patternString: string) {
+        this.mainString = mainString;
+        this.mainStringLength = mainString.length;
+        this.patternString = patternString;
+        this.patternStringLength = patternString.length;
+        this.nexts = new Array(this.patternStringLength).fill(-1);
 
-      this.getNexts();
+        this.getNexts();
     }
 
-    matchWithkmp () {
-      let j = 0;
-      for (let i = 0; i < this.mainStringLength; i++) {
-        while (j > 0 && this.mainString[i] !== this.patternString[j]) {
-          j = this.nexts[j - 1] + 1;
+    matchWithkmp() {
+        let j = 0;
+        for (let i = 0; i < this.mainStringLength; i++) {
+            while (j > 0 && this.mainString[i] !== this.patternString[j]) {
+                j = this.nexts[j - 1] + 1;
+            }
+            if (this.mainString[i] === this.patternString[j]) {
+                j++;
+            }
+            if (j === this.patternStringLength) {
+                return i - j + 1;
+            }
         }
-        if (this.mainString[i] === this.patternString[j]) {
-          j++;
-        }
-        if (j === this.patternStringLength) {
-          return i - j + 1;
-        }
-      }
-      return -1;
+        return -1;
     }
 
-    getNexts () {
-      // eslint-disable-next-line no-unreachable-loop
-      let k = -1;// the newest matched position
-      for (let i = 1; i < this.patternStringLength; i++) {
-        while (k !== -1 && this.patternString[k + 1] !== this.patternString[i]) {
-          k = this.nexts[k];
+    getNexts() {
+        let k = -1; // the newest matched position
+        for (let i = 1; i < this.patternStringLength; i++) {
+            while (
+                k !== -1 &&
+                this.patternString[k + 1] !== this.patternString[i]
+            ) {
+                k = this.nexts[k];
+            }
+            if (this.patternString[k + 1] === this.patternString[i]) {
+                ++k;
+            }
+            this.nexts[i] = k;
         }
-        if (this.patternString[k + 1] === this.patternString[i]) {
-          ++k;
-        }
-        this.nexts[i] = k;
-      }
     }
 }

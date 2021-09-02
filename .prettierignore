@@ -1,4 +1,6 @@
+# Ignore artifacts:
+build
+coverage
 node_modules
+images
 .husky
-.idea
-image
