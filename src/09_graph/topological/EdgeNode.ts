@@ -6,9 +6,9 @@ export class EdgeNode {
     next: EdgeNode;
     weight: number;
 
-    constructor(name:string,next:EdgeNode,weight?: number) {
+    constructor(name: string, next: EdgeNode, weight?: number) {
         this.name = name;
         this.next = next;
-        this.weight = weight
+        this.weight = weight;
     }
 }
