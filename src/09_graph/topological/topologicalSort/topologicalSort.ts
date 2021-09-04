@@ -1,10 +1,10 @@
 /**
  * 拓扑排序
  */
-import { VertexNode } from "./VertexNode";
-import { EdgeNode } from "./EdgeNode";
+import { VertexNode } from "../VertexNode";
+import { EdgeNode } from "../EdgeNode";
 
-export class Topological {
+export class TopologicalSort {
   adList: VertexNode[] = [];
   stack:Array<number>=[];
   constructor() {
