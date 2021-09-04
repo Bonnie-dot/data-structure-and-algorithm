@@ -8,10 +8,6 @@
     "prepare": "husky install",
     "prettier": "prettier --write src/"
   },
-  "lint-staged": {
-    "**/*": "prettier --write src/",
-    "*.{js,css,md}": "prettier --write"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChenQing-coder/data-structure-and-algorithm.git"
@@ -32,7 +28,6 @@
     "babel-jest": "^26.6.3",
     "husky": "^7.0.2",
     "jest": "^26.6.3",
-    "lint-staged": "^11.1.2",
     "prettier": "2.3.2"
   },
   "dependencies": {
