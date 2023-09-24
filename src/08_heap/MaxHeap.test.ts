@@ -1,8 +1,8 @@
-import { Heap } from './Heap';
+import { MaxHeap } from './MaxHeap';
 
-describe('heap operator', () => {
+describe('Maxheap operator', () => {
     test('should insert correct when call insert', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         const array = heap.print();
 
@@ -10,7 +10,7 @@ describe('heap operator', () => {
     });
 
     test('should insert two values by order when call insert', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         heap.insert(2);
         const array = heap.print();
@@ -19,7 +19,7 @@ describe('heap operator', () => {
     });
 
     test('should insert four values by order when call insert', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         heap.insert(2);
         heap.insert(6);
@@ -30,7 +30,7 @@ describe('heap operator', () => {
     });
 
     test('should insert multiple values by order when call insert', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         heap.insert(2);
         heap.insert(6);
@@ -42,7 +42,7 @@ describe('heap operator', () => {
     });
 
     test('should delete top values when call deleteHeapTop', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         heap.insert(2);
         heap.insert(6);
@@ -55,7 +55,7 @@ describe('heap operator', () => {
     });
 
     test('should sort values when call sort', () => {
-        const heap = new Heap();
+        const heap = new MaxHeap();
         heap.insert(1);
         heap.insert(2);
         heap.insert(6);
@@ -65,4 +65,28 @@ describe('heap operator', () => {
 
         expect(result).toEqual([6, 4, 3, 2, 1]);
     });
+
+    it('should go through top element when call peek', () => {
+        const heap = new MaxHeap();
+        heap.insert(1);
+        heap.insert(2);
+        heap.insert(6);
+        heap.insert(4);
+        heap.insert(3);
+        const result = heap.peek();
+        expect(result).toEqual(6);
+    });
+
+    it('should remove first element when call pop', () => {
+        const heap = new MaxHeap();
+        heap.insert(1);
+        heap.insert(2);
+        heap.insert(6);
+        heap.insert(4);
+        heap.insert(3);
+        const result = heap.pop();
+        expect(result).toEqual(6);
+        expect(heap.print()).toEqual([4,3,2,1]);
+    });
+
 });

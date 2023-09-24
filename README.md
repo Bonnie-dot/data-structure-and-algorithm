@@ -47,7 +47,7 @@ JavaScript+TypeScript+Jest
        │   ├── SearchBinaryTree.test.ts
        │   └── SearchBinaryTree.ts
        ├── 08_heap
-       │   ├── Heap.test.ts
+       │   ├── MaxHeap.test.ts
        │   └── Heap.ts
        ├── 09_graph
        │   ├── graph

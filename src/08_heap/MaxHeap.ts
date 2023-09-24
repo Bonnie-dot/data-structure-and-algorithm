@@ -1,13 +1,19 @@
-export class Heap {
+export class MaxHeap {
     private array: number[] = [null];
 
     insert(value: number) {
         this.array.push(value);
-        let i = this.array.length - 1;
-        const parent = Math.floor(i / 2);
-        while (parent > 0 && this.array[i] > this.array[parent]) {
-            this.swap(i, parent);
-            i = parent;
+        this.shiftUp();
+    }
+
+    shiftUp() {
+        let index = this.array.length - 1;
+        // Math.floor(index / 2) is equal to index>>>1
+        let parent = index >>> 1;
+        while (parent > 0 && this.array[index] > this.array[parent]) {
+            this.swap(index, parent);
+            index = parent;
+            parent = index >>> 1;
         }
     }
 
@@ -16,7 +22,8 @@ export class Heap {
         this.array[1] = this.array[count];
         this.array.splice(count, 1);
         let i = 1;
-        const child = Math.floor(i * 2);
+        // Math.floor(i * 2) is equal to i<<1
+        const child = i << 1;
         while (i < count && this.array[i] < this.array[child]) {
             this.swap(i, child);
             i = child;
@@ -24,10 +31,10 @@ export class Heap {
     }
 
     sort(): number[] {
-        const i = 1;
+        const index = 1;
         const temp = [];
-        while (i < this.array.length) {
-            temp.push(this.array[i]);
+        while (index < this.array.length) {
+            temp.push(this.array[index]);
             this.deleteHeapTop();
         }
         return temp;
@@ -41,5 +48,15 @@ export class Heap {
         const temp = this.array[number1];
         this.array[number1] = this.array[number2];
         this.array[number2] = temp;
+    }
+
+    peek() {
+        return this.array.length === 0 ? null : this.array[1];
+    }
+
+    pop() {
+        const top = this.array[1];
+        this.deleteHeapTop()
+        return top;
     }
 }
