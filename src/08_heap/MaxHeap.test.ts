@@ -86,7 +86,6 @@ describe('Maxheap operator', () => {
         heap.insert(3);
         const result = heap.pop();
         expect(result).toEqual(6);
-        expect(heap.print()).toEqual([4,3,2,1]);
+        expect(heap.print()).toEqual([4, 3, 2, 1]);
     });
-
 });

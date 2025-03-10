@@ -56,7 +56,7 @@ export class MaxHeap {
 
     pop() {
         const top = this.array[1];
-        this.deleteHeapTop()
+        this.deleteHeapTop();
         return top;
     }
 }

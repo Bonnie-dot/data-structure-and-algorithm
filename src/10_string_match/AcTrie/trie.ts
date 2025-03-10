@@ -1,44 +1,54 @@
 class TrieNode {
-    data: any;
-    children: TrieNode[] = new Array(26).fill(null);
+    children: Map<string, TrieNode> = new Map();
     isEndingChar: boolean;
-    constructor(data) {
-        this.data = data;
-    }
 }
 
 export class Trie {
-    root = new TrieNode('/');
-
+    root: TrieNode;
+    constructor() {
+        this.root = new TrieNode();
+    }
     insert(text: string) {
         let currentTrie = this.root;
         for (let i = 0; i < text.length; i++) {
-            const index = text[i].charCodeAt(0) - 'a'.charCodeAt(0);
-            if (currentTrie.children[index] === null) {
-                currentTrie.children[index] = new TrieNode(text[i]);
+            if (!currentTrie.children.has(text[i])) {
+                currentTrie.children.set(text[i], new TrieNode());
             }
-            currentTrie = currentTrie.children[index];
+            currentTrie = currentTrie.children.get(text[i])!;
         }
-        if (!this.isChildrenValue(currentTrie.children)) {
+        if (currentTrie.children.size === 0) {
             currentTrie.isEndingChar = true;
         }
     }
 
-    isChildrenValue(children: TrieNode[]) {
-        const trieNodes = children.filter((item) => item !== null);
-        return trieNodes.length > 0;
-    }
-
-    find(text: string) {
+    search(text: string) {
         let currentTrieChildren = this.root.children;
         for (let i = 0; i < text.length; i++) {
-            const index = text[i].charCodeAt(0) - 'a'.charCodeAt(0);
-            if (!currentTrieChildren[index]) {
+            if (!currentTrieChildren.has(text[i])) {
                 return false;
             }
-
-            currentTrieChildren = currentTrieChildren[index].children;
+            currentTrieChildren = currentTrieChildren.get(text[i])!.children;
         }
         return true;
+    }
+
+    delete(text: string) {
+        let currentTrieChildren = this.root.children;
+        for (let i = 0; i < text.length; i++) {
+            if (!currentTrieChildren.has(text[i])) {
+                return false;
+            }
+            if (i < text.length - 1) {
+                currentTrieChildren = currentTrieChildren.get(
+                    text[i],
+                )!.children;
+            }
+        }
+        const lastNode = currentTrieChildren.get(text[text.length - 1]);
+        if (lastNode?.isEndingChar) {
+            lastNode.isEndingChar = false;
+            lastNode.children.size === 0 &&
+                currentTrieChildren.delete(text[text.length - 1]);
+        }
     }
 }
