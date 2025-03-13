@@ -205,7 +205,7 @@ export class RedBlackTree<T> {
         node.parent = rightChild;
     }
 
-    traversalByOrderType(orderType: OrderType = OrderType.LEVEL_ORDER) {
+    traversalByOrderType(orderType: OrderType = OrderType.LEVEL_ORDER):Array<string> {
         this.printedData = [];
         this._traversalByOrderType(this.root, orderType);
         return this.printedData;
@@ -253,7 +253,7 @@ export class RedBlackTree<T> {
         }
     }
 
-    find(value: T) {
+    find(value: T): boolean {
         let current = this.root;
         while (current !== this.NIL) {
             if (current.data === value) {
@@ -264,7 +264,7 @@ export class RedBlackTree<T> {
         return false;
     }
 
-    findMinNode() {
+    findMinNode(): T {
         let current = this.root;
         while (current?.left !== this.NIL) {
             current = current!.left;
@@ -272,7 +272,7 @@ export class RedBlackTree<T> {
         return current!.data;
     }
 
-    findMaxNode() {
+    findMaxNode(): T {
         let current = this.root;
         while (current?.right !== this.NIL) {
             current = current!.right;
@@ -280,7 +280,7 @@ export class RedBlackTree<T> {
         return current!.data;
     }
 
-    findParent(value: T) {
+    findParent(value: T): RBNode<T> | null {
         let current = this.root;
         let parent: RBNode<T> | null = null;
         while (current !== this.NIL) {
@@ -292,4 +292,6 @@ export class RedBlackTree<T> {
         }
         return null;
     }
+
+    
 }
