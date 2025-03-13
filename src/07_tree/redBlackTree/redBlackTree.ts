@@ -271,4 +271,12 @@ export class RedBlackTree<T> {
         }
         return current!.data;
     }
+
+    findMaxNode() {
+        let current = this.root;
+        while (current?.right !== this.NIL) {
+            current = current!.right;
+        }
+        return current!.data;
+    }
 }

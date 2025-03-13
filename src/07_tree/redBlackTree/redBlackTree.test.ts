@@ -121,4 +121,16 @@ describe('RedBlackTree', () => {
 
         expect(tree.findMinNode()).toEqual(0);
     });
+
+    it('should find the max node', () => {
+        const tree = new RedBlackTree<number>();
+        tree.insert(8);
+        tree.insert(7);
+        tree.insert(10);
+        tree.insert(0);
+        tree.insert(14);
+        tree.insert(15);
+
+        expect(tree.findMaxNode()).toEqual(15);
+    });
 });
