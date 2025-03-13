@@ -1,6 +1,8 @@
+import { OrderType } from '../Node';
+
 enum Color {
-    RED,
-    BLACK,
+    RED = 'RED',
+    BLACK = 'BLACK',
 }
 
 class RBNode<T> {
@@ -9,6 +11,7 @@ class RBNode<T> {
     left: RBNode<T> | null;
     right: RBNode<T> | null;
     parent: RBNode<T> | null;
+    printedData: T[] = [];
     constructor(data: T, color: Color = Color.RED) {
         this.data = data;
         this.color = color;
@@ -18,21 +21,22 @@ class RBNode<T> {
     }
 }
 
-class RedBlackTree {
-    root: RBNode<number>|null;
-    NIL: RBNode<number>|null;
+export class RedBlackTree<T> {
+    root: RBNode<T> | null = null;
+    NIL: null;
+    printedData: string[] = [];
     constructor() {
         // NIL node is a sentinel node that is used to simplify the implementation.
-        this.NIL = new RBNode<number>(null as any, Color.BLACK);
+        this.NIL = null;
         this.root = this.NIL;
     }
 
-    insert(data: number) {
+    insert(data: T) {
         const node = new RBNode(data);
         node.left = this.NIL;
         node.right = this.NIL;
-        let current: RBNode<number> | null = this.root;
-        let parent: RBNode<number> | null = null;
+        let current: RBNode<T> | null = this.root;
+        let parent: RBNode<T> | null = null;
         // 1. Find leaf node to insert the new node
         while (current !== this.NIL) {
             parent = current;
@@ -51,60 +55,106 @@ class RedBlackTree {
         } else {
             parent.right = node;
         }
+
+        this.fixInsert(node);
     }
 
-    fixInsert(node: RBNode<number>) {
-        // 1. If the uncle is red, we need to fix the tree
-        while (node.parent?.color === Color.RED) {
-            if (node.parent === node.parent.parent?.left) {
-                const uncle = node.parent.parent.right;
-                    // case1: Node's uncle is red
+    fixInsert(node: RBNode<T> | null) {
+        while (node && node.parent && node.parent?.color === Color.RED) {
+            const grandParent = node.parent.parent;
+            if (grandParent === this.NIL) {
+                break;
+            }
+            if (node.parent === grandParent?.left) {
+                const uncle = grandParent?.right;
+                // Case1: Node's uncle is red
+                if (uncle?.color === Color.RED) {
+                    //
                     //       Ancestor (B)                                     Ancestor(R)
                     //         /     \                                          /     \
                     //  Parent (R)  Uncle (R)  --------Color--------------> Parent (B)  Uncle (B)
-                    //  /                                                            /
-                    // Node (R)                                                  Node (R)
-                if (uncle?.color === Color.RED) {
+                    //  /                                                       /
+                    // Node (R)                                            Node (R)
+
                     node.parent.color = Color.BLACK;
-                    uncle.color = Color.BLACK;                                       
-                    node.parent.parent.color = Color.RED;
-                    node = node.parent.parent;
+                    uncle.color = Color.BLACK;
+                    grandParent.color = Color.RED;
+                    node = grandParent;
                 } else {
-                    // Is not right child
-                        // case2: node is the right child of the parent
-                        // Ancestor (A)                          Ancestor (R)                              Parent (B)
-                        // /                                       /                                         /    \
-                        // Parent (R)   -------Color---------> Parent (B)    ---Rotate Right------>  Node (R)  Ancestor (R)
-                        //  \                                     \                                               
-                        // Node (R)                           Node (R)                                            
-                    if (node === node.parent.left) {
-                        node.parent.color = Color.BLACK;
-                        node.parent.parent.color = Color.RED;
-                        this.rotateRight(node.parent.parent);
-                    }else {
-                        // case3: node is the left child of the parent
-                        // Ancestor (A)                          Ancestor (R)                              Parent (B)
-                        // /                                       /                                         /    \
-                        // Parent (R)     -------Color---------> Parent (B)    ---Rotate Right------>  Node (R)  Ancestor (R)
-                        //  /                                     /                                               \
-                        // Node (R)                           Node (R)                                            NIL (B)
-                        node.parent.color = Color.BLACK;
-                        node.parent.parent.color = Color.RED;
-                        this.rotateRight(node.parent.parent);
+                    // Case2: Node is the right child of the parent
+                    //   Ancestor (B)                                Ancestor (B)
+                    //      /                                         /
+                    //   Parent (R)    ---Rotate Left------>       Node (R)
+                    //       \                                      /
+                    //     Node (R)                              Parent (R)
+
+                    if (node === node.parent.right) {
+                        node = node.parent;
+                        this.rotateLeft(node);
                     }
+                    //  Ancestor(B)                           Ancestor (R)
+                    //     /                                     /
+                    // Node(R)    --------Color------>     Node(B) ---------Rotate Right----------->  Node (B)
+                    //    /                                    /                                    /        \
+                    //  Parent(R)                           Parent(R)                           Parent(R)  Ancestor(R)
+
+                    //Node refer to Parent
+                    node.parent!.color = Color.BLACK;
+                    grandParent!.color = Color.RED;
+                    this.rotateRight(grandParent);
+                }
+            } else {
+                const uncle = grandParent?.left;
+                if (uncle?.color === Color.RED) {
+                    // Case 1: Node's uncle is red
+                    //       Ancestor (B)                                     Ancestor(R)
+                    //         /     \                                          /     \
+                    //  Uncle (R)  Parent (R)  --------Color--------------> Uncle (B)  Parent (B)
+                    //               \                                                   \
+                    //             Node(R)                                            Node(R)
+
+                    node.parent!.color = Color.BLACK;
+                    uncle.color = Color.BLACK;
+                    grandParent!.color = Color.RED;
+                    node = grandParent;
+                } else {
+                    // Case 2: Node is the left child of the parent
+                    //   Ancestor (B)                           Ancestor (B)
+                    //      \                                      \
+                    //   Parent(R)    -----Rotate Right------>    Node (R)
+                    //       /                                     \
+                    //   Node (R)                              Parent (R)
+
+                    if (node === node.parent.left) {
+                        node = node.parent;
+                        this.rotateRight(node);
+                    }
+                    //   Ancestor (B)                    Ancestor (R)
+                    //      \                               \
+                    //   Node (R)   --------Color------>  Node (B)     --------Rotate Left--------->  Node (B)
+                    //     \                                \                                         /  \
+                    //  Parent (R)                      Parent (R)                         Ancestor(R)  Parent (R)
+
+                    node.parent!.color = Color.BLACK;
+                    grandParent!.color = Color.RED;
+                    this.rotateLeft(grandParent!);
                 }
             }
         }
+        this.root!.color = Color.BLACK;
     }
-    rotateRight(node: RBNode<number>) {
-        // Ancestor (R)                                            Parent (B)
-        //  /                                                     /         \
-        // Parent (B) ---------------rotate right---------->    Node (R)  Ancestor (R)
-        //   /      \                                                         /
-        // Node (R)  NIL(B)                                                  NIL (B)
+    rotateRight(node: RBNode<T>) {
+        //  Node (R)
+        //     /
+        //  Child1 (B) -------------rotate right---------->     Child1(B)
+        //    /                                                   /   \
+        //  Child2 (R)                                   Child2(R)    Node(R)
 
         //1. Make left child's right child as the left child of the node
         const leftChild = node.left;
+        if (leftChild === this.NIL) {
+            return;
+        }
         node.left = leftChild!.right;
         if (leftChild?.right !== this.NIL) {
             leftChild!.right!.parent = node;
@@ -118,13 +168,99 @@ class RedBlackTree {
         } else {
             node.parent.left = leftChild;
         }
-        
+
         //3. Make left child's right child as the node
         leftChild!.right = node;
         node.parent = leftChild;
     }
 
-    rotateLeft(){
+    rotateLeft(node: RBNode<T>) {
+        //   Node (R)
+        //      \
+        //   Child1 (B)    --------Rotate Left------>   Child1(B)
+        //       \                                     /        \
+        //     Child2 (R)                            Node(R)  Child2(R)
 
+        //1. Find the right child's left child to be the right child of the node
+        const rightChild = node.right;
+        if (rightChild === this.NIL) {
+            return;
+        }
+        node.right = rightChild!.left;
+        if (rightChild?.left !== this.NIL) {
+            rightChild!.left!.parent = node;
+        }
+        //2. Make right child as the parent
+        rightChild!.parent = node.parent;
+        if (node.parent === null) {
+            this.root = rightChild;
+        } else if (node === node.parent.left) {
+            node.parent.left = rightChild;
+        } else {
+            node.parent.right = rightChild;
+        }
+
+        //3. Make node as the left child of the right child
+        rightChild!.left = node;
+        node.parent = rightChild;
+    }
+
+    traversalByOrderType(orderType: OrderType = OrderType.LEVEL_ORDER) {
+        this.printedData = [];
+        this._traversalByOrderType(this.root, orderType);
+        return this.printedData;
+    }
+    _traversalByOrderType(
+        node: RBNode<T> | null,
+        orderType: OrderType = OrderType.LEVEL_ORDER,
+    ) {
+        if (node === this.NIL) {
+            return;
+        }
+        switch (orderType) {
+            case OrderType.PRE_ORDER:
+                this.printedData.push(`${node.data} (${node.color})`);
+                this._traversalByOrderType(node.left, orderType);
+                this._traversalByOrderType(node.right, orderType);
+                break;
+            case OrderType.IN_ORDER:
+                this._traversalByOrderType(node.left, orderType);
+                this.printedData.push(`${node.data} (${node.color})`);
+                this._traversalByOrderType(node.right, orderType);
+                break;
+            case OrderType.POST_ORDER:
+                this._traversalByOrderType(node.left, orderType);
+                this._traversalByOrderType(node.right, orderType);
+                this.printedData.push(`${node.data} (${node.color})`);
+                break;
+            case OrderType.LEVEL_ORDER:
+                const queue: RBNode<T>[] = [node];
+                while (queue.length > 0) {
+                    const current = queue.shift();
+                    this.printedData.push(
+                        `${current!.data} (${current!.color})`,
+                    );
+                    if (current!.left !== this.NIL) {
+                        queue.push(current!.left);
+                    }
+                    if (current!.right !== this.NIL) {
+                        queue.push(current!.right);
+                    }
+                }
+                break;
+            default:
+                throw new Error(`Invalid order type: ${orderType}`);
+        }
+    }
+
+    find(value: T) {
+        let current = this.root;
+        while (current !== this.NIL) {
+            if (current.data === value) {
+                return true;
+            }
+            current = value < current.data ? current.right : current.left;
+        }
+        return false;
     }
 }

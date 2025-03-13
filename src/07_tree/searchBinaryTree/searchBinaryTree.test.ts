@@ -1,4 +1,5 @@
-import { OrderType, SearchBinaryTree } from './searchBinaryTree';
+import { OrderType } from '../Node';
+import { SearchBinaryTree } from './searchBinaryTree';
 
 describe('search binary tree', () => {
     describe('insert', () => {

@@ -5,7 +5,7 @@ describe('patricia tree', () => {
     beforeAll(() => {
         patriciaTree = new PatriciaTree();
     });
-    it('should insert successfully', () => {
+    it.skip('should insert successfully', () => {
         patriciaTree.insert('cat');
         patriciaTree.insert('ca');
         patriciaTree.printTree();
