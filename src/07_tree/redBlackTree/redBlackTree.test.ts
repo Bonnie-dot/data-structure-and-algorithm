@@ -133,4 +133,18 @@ describe('RedBlackTree', () => {
 
         expect(tree.findMaxNode()).toEqual(15);
     });
+
+    it("should find parent's node", () => {
+        const tree = new RedBlackTree<number>();
+        tree.insert(8);
+        tree.insert(7);
+        tree.insert(10);
+        tree.insert(0);
+        tree.insert(14);
+        tree.insert(15);
+
+        expect(tree.findParent(0)?.data).toEqual(7);
+        expect(tree.findParent(15)?.data).toEqual(14);
+        expect(tree.findParent(12)).toBeNull();
+    });
 });

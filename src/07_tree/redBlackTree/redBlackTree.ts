@@ -279,4 +279,17 @@ export class RedBlackTree<T> {
         }
         return current!.data;
     }
+
+    findParent(value: T) {
+        let current = this.root;
+        let parent: RBNode<T> | null = null;
+        while (current !== this.NIL) {
+            if (current.data === value) {
+                return parent;
+            }
+            parent = current;
+            current = value > current.data ? current.right : current.left;
+        }
+        return null;
+    }
 }
