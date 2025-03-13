@@ -263,4 +263,12 @@ export class RedBlackTree<T> {
         }
         return false;
     }
+
+    findMinNode() {
+        let current = this.root;
+        while (current?.left !== this.NIL) {
+            current = current!.left;
+        }
+        return current!.data;
+    }
 }

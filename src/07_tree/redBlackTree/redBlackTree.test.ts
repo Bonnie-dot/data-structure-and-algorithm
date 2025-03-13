@@ -109,4 +109,16 @@ describe('RedBlackTree', () => {
         expect(tree.find(2)).toBeTruthy();
         expect(tree.find(6)).toBeFalsy();
     });
+
+    it('should find the min node', () => {
+        const tree = new RedBlackTree<number>();
+        tree.insert(8);
+        tree.insert(7);
+        tree.insert(10);
+        tree.insert(0);
+        tree.insert(14);
+        tree.insert(15);
+
+        expect(tree.findMinNode()).toEqual(0);
+    });
 });
