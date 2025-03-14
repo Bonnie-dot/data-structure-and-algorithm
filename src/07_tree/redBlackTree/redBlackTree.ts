@@ -205,7 +205,9 @@ export class RedBlackTree<T> {
         node.parent = rightChild;
     }
 
-    traversalByOrderType(orderType: OrderType = OrderType.LEVEL_ORDER):Array<string> {
+    traversalByOrderType(
+        orderType: OrderType = OrderType.LEVEL_ORDER,
+    ): Array<string> {
         this.printedData = [];
         this._traversalByOrderType(this.root, orderType);
         return this.printedData;
@@ -253,15 +255,15 @@ export class RedBlackTree<T> {
         }
     }
 
-    find(value: T): boolean {
+    find(value: T): RBNode<T> | null {
         let current = this.root;
         while (current !== this.NIL) {
             if (current.data === value) {
-                return true;
+                return current;
             }
             current = value < current.data ? current.right : current.left;
         }
-        return false;
+        return null;
     }
 
     findMinNode(): T {
@@ -292,6 +294,41 @@ export class RedBlackTree<T> {
         }
         return null;
     }
+    delete(value: T) {
+        /**
+         *            9(BLACK)
+         *           /      \
+         *      7(BLACK)      14 (BLACK)
+         *     /    \      /     \
+         *   0(RED)  8 10(RED)    15(RED)
+         *
+         *
+         */
+        const node = this.find(value);
+        if (!node) {
+            return;
+        }
+        if (node.left !== this.NIL || node.right !== this.NIL) {
+            //case1: No child
+            this.deleteWithNoChildOrOneChild(node, node);
+        } else {
+            //case2: Two child
+        }
+    }
 
-    
+    deleteWithNoChildOrOneChild(parentNode: RBNode<T>, node: RBNode<T>) {
+        let child: RBNode<T> | null = this.NIL;
+        if (node.left !== this.NIL) {
+            child = node.left;
+        } else if (node.right !== this.NIL) {
+            child = node.right;
+        } else {
+            child = this.NIL;
+        }
+        if (node === parentNode.left) {
+            parentNode.left = child;
+        } else {
+            parentNode.right = child;
+        }
+    }
 }

@@ -106,8 +106,8 @@ describe('RedBlackTree', () => {
         tree.insert(1);
         tree.insert(2);
         tree.insert(3);
-        expect(tree.find(2)).toBeTruthy();
-        expect(tree.find(6)).toBeFalsy();
+        expect(tree.find(2)?.data).toEqual(2);
+        expect(tree.find(6)?.data).toBeNull();
     });
 
     it('should find the min node', () => {
