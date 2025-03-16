@@ -55,7 +55,6 @@ export class RedBlackTree<T> {
         } else {
             parent.right = node;
         }
-
         this.fixInsert(node);
     }
 
@@ -69,34 +68,37 @@ export class RedBlackTree<T> {
                 const uncle = grandParent?.right;
                 // Case1: Node's uncle is red
                 if (uncle?.color === Color.RED) {
-                    //
-                    //       Ancestor (B)                                     Ancestor(R)
-                    //         /     \                                          /     \
-                    //  Parent (R)  Uncle (R)  --------Color--------------> Parent (B)  Uncle (B)
-                    //  /                                                       /
-                    // Node (R)                                            Node (R)
+                    /**
+                     *       Ancestor (B)                                     Ancestor(R)
+                     *         /     \                                          /     \
+                     *  Parent (R)  Uncle (R)  --------Color--------------> Parent (B)  Uncle (B)
+                     *                   /                                                  /
+                     *                    Node (R)                                        Node (R)
+                     */
 
                     node.parent.color = Color.BLACK;
                     uncle.color = Color.BLACK;
                     grandParent.color = Color.RED;
                     node = grandParent;
                 } else {
-                    // Case2: Node is the right child of the parent
-                    //   Ancestor (B)                                Ancestor (B)
-                    //      /                                         /
-                    //   Parent (R)    ---Rotate Left------>       Node (R)
-                    //       \                                      /
-                    //     Node (R)                              Parent (R)
-
+                    /**
+                     *   Ancestor (B)                                Ancestor (B)
+                     *      /                                         /
+                     *   Parent (R)    ---Rotate Left------>       Node (R)
+                     *       \                                      /
+                     *     Node (R)                              Parent (R)
+                     */
                     if (node === node.parent.right) {
                         node = node.parent;
                         this.rotateLeft(node);
                     }
-                    //  Ancestor(B)                           Ancestor (R)
-                    //     /                                     /
-                    // Node(R)    --------Color------>     Node(B) ---------Rotate Right----------->  Node (B)
-                    //    /                                    /                                    /        \
-                    //  Parent(R)                           Parent(R)                           Parent(R)  Ancestor(R)
+                    /**
+                     *  Ancestor(B)                           Ancestor (R)
+                     *     /                                     /
+                     * Node(R)    --------Color------>     Node(B) ---------Rotate Right----------->  Node (B)
+                     *    /                                    /                                    /        \
+                     *  Parent(R)                           Parent(R)                           Parent(R)  Ancestor(R)
+                     */
 
                     //Node refer to Parent
                     node.parent!.color = Color.BLACK;
@@ -106,34 +108,38 @@ export class RedBlackTree<T> {
             } else {
                 const uncle = grandParent?.left;
                 if (uncle?.color === Color.RED) {
-                    // Case 1: Node's uncle is red
-                    //       Ancestor (B)                                     Ancestor(R)
-                    //         /     \                                          /     \
-                    //  Uncle (R)  Parent (R)  --------Color--------------> Uncle (B)  Parent (B)
-                    //               \                                                   \
-                    //             Node(R)                                            Node(R)
+                    /**
+                     *       Ancestor (B)                                     Ancestor(R)
+                     *         /     \                                          /     \
+                     *  Uncle (R)  Parent (R)  --------Color--------------> Uncle (B)  Parent (B)
+                     *               \                                                   \
+                     *             Node(R)                                            Node(R)
+                     */
 
                     node.parent!.color = Color.BLACK;
                     uncle.color = Color.BLACK;
                     grandParent!.color = Color.RED;
                     node = grandParent;
                 } else {
-                    // Case 2: Node is the left child of the parent
-                    //   Ancestor (B)                           Ancestor (B)
-                    //      \                                      \
-                    //   Parent(R)    -----Rotate Right------>    Node (R)
-                    //       /                                     \
-                    //   Node (R)                              Parent (R)
+                    /**
+                     *   Ancestor (B)                           Ancestor (B)
+                     *      \                                      \
+                     *   Parent(R)    -----Rotate Right------>    Node (R)
+                     *       /                                     \
+                     *   Node (R)                              Parent (R)
+                     */
 
                     if (node === node.parent.left) {
                         node = node.parent;
                         this.rotateRight(node);
                     }
-                    //   Ancestor (B)                    Ancestor (R)
-                    //      \                               \
-                    //   Node (R)   --------Color------>  Node (B)     --------Rotate Left--------->  Node (B)
-                    //     \                                \                                         /  \
-                    //  Parent (R)                      Parent (R)                         Ancestor(R)  Parent (R)
+                    /**
+                     *   Ancestor (B)                    Ancestor (R)
+                     *      \                               \
+                     *   Node (R)   --------Color------>  Node (B)     --------Rotate Left--------->  Node (B)
+                     *     \                                \                                         /  \
+                     *  Parent (R)                      Parent (R)                         Ancestor(R)  Parent (R)
+                     */
 
                     node.parent!.color = Color.BLACK;
                     grandParent!.color = Color.RED;
@@ -143,12 +149,15 @@ export class RedBlackTree<T> {
         }
         this.root!.color = Color.BLACK;
     }
+
     rotateRight(node: RBNode<T>) {
-        //  Node (R)
-        //     /
-        //  Child1 (B) -------------rotate right---------->     Child1(B)
-        //    /                                                   /   \
-        //  Child2 (R)                                   Child2(R)    Node(R)
+        /**
+         *  Node (R)
+         *     /
+         *  Child1 (B) -------------rotate right---------->     Child1(B)
+         *    /                                                   /   \
+         *  Child2 (R)                                   Child2(R)    Node(R)
+         */
 
         //1. Make left child's right child as the left child of the node
         const leftChild = node.left;
@@ -175,11 +184,13 @@ export class RedBlackTree<T> {
     }
 
     rotateLeft(node: RBNode<T>) {
-        //   Node (R)
-        //      \
-        //   Child1 (B)    --------Rotate Left------>   Child1(B)
-        //       \                                     /        \
-        //     Child2 (R)                            Node(R)  Child2(R)
+        /**
+         *   Node (R)
+         *      \
+         *   Child1 (B)    --------Rotate Left------>   Child1(B)
+         *       \                                     /        \
+         *     Child2 (R)                            Node(R)  Child2(R)
+         */
 
         //1. Find the right child's left child to be the right child of the node
         const rightChild = node.right;
@@ -261,25 +272,25 @@ export class RedBlackTree<T> {
             if (current.data === value) {
                 return current;
             }
-            current = value < current.data ? current.right : current.left;
+            current = value > current.data ? current.right : current.left;
         }
         return null;
     }
 
-    findMinNode(): T {
-        let current = this.root;
+    findMinNode(node: RBNode<T> | null = this.root): RBNode<T> {
+        let current = node || this.root;
         while (current?.left !== this.NIL) {
             current = current!.left;
         }
-        return current!.data;
+        return current;
     }
 
-    findMaxNode(): T {
-        let current = this.root;
+    findMaxNode(node: RBNode<T> | null = this.root): RBNode<T> {
+        let current = node || this.root;
         while (current?.right !== this.NIL) {
             current = current!.right;
         }
-        return current!.data;
+        return current;
     }
 
     findParent(value: T): RBNode<T> | null {
@@ -295,28 +306,19 @@ export class RedBlackTree<T> {
         return null;
     }
     delete(value: T) {
-        /**
-         *            9(BLACK)
-         *           /      \
-         *      7(BLACK)      14 (BLACK)
-         *     /    \      /     \
-         *   0(RED)  8 10(RED)    15(RED)
-         *
-         *
-         */
         const node = this.find(value);
         if (!node) {
             return;
         }
-        if (node.left !== this.NIL || node.right !== this.NIL) {
-            //case1: No child
-            this.deleteWithNoChildOrOneChild(node, node);
+        if (node.left !== this.NIL && node.right !== this.NIL) {
+            this.deleteWithTwoChild(node);
         } else {
-            //case2: Two child
+            this.deleteWithNoChildOrOneChild(node);
         }
     }
 
-    deleteWithNoChildOrOneChild(parentNode: RBNode<T>, node: RBNode<T>) {
+    deleteWithNoChildOrOneChild(node: RBNode<T>) {
+        // 1. find the child node
         let child: RBNode<T> | null = this.NIL;
         if (node.left !== this.NIL) {
             child = node.left;
@@ -325,10 +327,88 @@ export class RedBlackTree<T> {
         } else {
             child = this.NIL;
         }
-        if (node === parentNode.left) {
+        const parentNode = node.parent;
+        // 2. Replace the node with the child node
+        if (node === parentNode?.left) {
             parentNode.left = child;
         } else {
-            parentNode.right = child;
+            parentNode!.right = child;
         }
+
+        /**
+         * 3. Fix the color
+         *
+         * @remark If the node is black, the deletion will cause a double. But if the node is red,
+         * the deletion will not cause a double black. So, we need to fix the color only when the node is black.
+         */
+        if (child) {
+            if (child && node.color === Color.BLACK) {
+                if (child?.color === Color.RED) {
+                    child.color = Color.BLACK;
+                } else {
+                    this.fixInsert(child);
+                }
+            }
+        } else {
+            if (node.color === Color.BLACK) {
+                console.log('here');
+                this.fixDelete(node);
+            }
+        }
+    }
+
+    deleteWithTwoChild(node: RBNode<T>) {
+        /**
+         * There are two ways to delete a node from a red-black tree with two children:
+         * 1. Find the maximum node in the left subtree of the node to be deleted,
+         * and replace the node to be deleted with the maximum node in the left subtree.
+         * 2. Find the minimum node in the right subtree of the node to be deleted,
+         * and replace the node to be deleted with the minimum node in the right subtree.
+         *
+         * @remark `searchBinaryTree ` has use minimum node in the right subtree to replace the node to be deleted.
+         * So, this case will use the maximum node in the left subtree to replace the node to be deleted.
+         */
+        const maxNode = this.findMaxNode(node.left);
+        node.data = maxNode.data;
+        const parentNode = this.findParent(maxNode.data);
+        parentNode!.right = this.NIL;
+        this.fixInsert(maxNode);
+    }
+
+    fixDelete(node: RBNode<T> | null) {
+        console.log('fixDelete', node);
+        /**
+         * Only when the node is black, we need to fix the color.
+         * If the node is red, we can directly delete it because deletion will not cause a double
+         * black.
+         */
+        // while (node !== this.root && node?.color === Color.BLACK) {
+        //     if (node === node.parent?.left) {
+        //         let sibling = node.parent.right;
+        //         //sibling is red
+        //         if (sibling?.color === Color.RED) {
+        //             sibling.color = Color.BLACK;
+        //             node.parent.color = Color.RED;
+        //             this.rotateLeft(node.parent);
+        //             sibling = node.parent.right;
+        //         } else {
+        //             /**
+        //              *            8 (BLACK)                                         8(BLACK)
+        //              *              /     \                                         /      \
+        //              *          7(BLACK)   10 (BLACK) Deleted -------------> 7(BLACK)      10 (BLACK)
+        //              *                       \                                     /
+        //              *                    14 (RED)                               10(RED)
+        //              *
+        //              *
+        //              */
+        //             console.log("-------------------");
+        //             sibling!.color = node.parent.color;
+        //             node.parent.color = Color.BLACK;
+        //             sibling!.right!.color = Color.BLACK;
+        //             // this.rotateLeft(node.parent);
+        //             node = this.root;
+        //         }
+        //     }
+        // }
     }
 }
