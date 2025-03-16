@@ -22,9 +22,11 @@ describe('RedBlackTree', () => {
             ]);
         });
         it('should be able to insert two nodes with left child', () => {
-            // 3 (BLACK)
-            //  /
-            // 1 (RED)
+            /**
+             * 3 (BLACK)
+             *  /
+             * 1 (RED)
+             */
             const tree = new RedBlackTree<number>();
             tree.insert(3);
             tree.insert(1);
@@ -83,7 +85,6 @@ describe('RedBlackTree', () => {
             tree.insert(10);
             tree.insert(0);
             tree.insert(14);
-
             tree.insert(15);
             expect(tree.traversalByOrderType()).toEqual([
                 '8 (BLACK)',
@@ -184,8 +185,6 @@ describe('RedBlackTree', () => {
              *          7(BLACK)   10 (BLACK) -------------> 7(BLACK)      10 (BLACK)
              *                       \                                     /
              *                    14 (RED)                               14(RED)
-             *
-             *
              */
             const tree = new RedBlackTree<number>();
             tree.insert(8);
