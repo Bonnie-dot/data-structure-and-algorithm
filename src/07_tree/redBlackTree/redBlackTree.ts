@@ -72,8 +72,8 @@ export class RedBlackTree<T> {
                      *       Ancestor (B)                                     Ancestor(R)
                      *         /     \                                          /     \
                      *  Parent (R)  Uncle (R)  --------Color--------------> Parent (B)  Uncle (B)
-                     *                   /                                                  /
-                     *                    Node (R)                                        Node (R)
+                     *      /                                                  /
+                     *    Node (R)                                        Node (R)
                      */
 
                     node.parent.color = Color.BLACK;
@@ -352,7 +352,7 @@ export class RedBlackTree<T> {
         } else {
             if (node.color === Color.BLACK) {
                 console.log('here');
-                this.fixDelete(node);
+                // this.fixDelete(node);
             }
         }
     }
@@ -369,46 +369,87 @@ export class RedBlackTree<T> {
          * So, this case will use the maximum node in the left subtree to replace the node to be deleted.
          */
         const maxNode = this.findMaxNode(node.left);
+
         node.data = maxNode.data;
         const parentNode = this.findParent(maxNode.data);
         parentNode!.right = this.NIL;
-        this.fixInsert(maxNode);
     }
 
     fixDelete(node: RBNode<T> | null) {
-        console.log('fixDelete', node);
-        /**
-         * Only when the node is black, we need to fix the color.
-         * If the node is red, we can directly delete it because deletion will not cause a double
-         * black.
-         */
-        // while (node !== this.root && node?.color === Color.BLACK) {
-        //     if (node === node.parent?.left) {
-        //         let sibling = node.parent.right;
-        //         //sibling is red
-        //         if (sibling?.color === Color.RED) {
-        //             sibling.color = Color.BLACK;
-        //             node.parent.color = Color.RED;
-        //             this.rotateLeft(node.parent);
-        //             sibling = node.parent.right;
-        //         } else {
-        //             /**
-        //              *            8 (BLACK)                                         8(BLACK)
-        //              *              /     \                                         /      \
-        //              *          7(BLACK)   10 (BLACK) Deleted -------------> 7(BLACK)      10 (BLACK)
-        //              *                       \                                     /
-        //              *                    14 (RED)                               10(RED)
-        //              *
-        //              *
-        //              */
-        //             console.log("-------------------");
-        //             sibling!.color = node.parent.color;
-        //             node.parent.color = Color.BLACK;
-        //             sibling!.right!.color = Color.BLACK;
-        //             // this.rotateLeft(node.parent);
-        //             node = this.root;
-        //         }
-        //     }
-        // }
+        let x = node;
+        while (x !== this.root && x?.color === Color.BLACK) {
+            if (x === x.parent?.left) {
+                let sibling = x.parent.right;
+                // Case 1: sibling is red
+                if (sibling?.color === Color.RED) {
+                    sibling.color = Color.BLACK;
+                    x.parent.color = Color.RED;
+                    this.rotateLeft(x.parent);
+                    sibling = x.parent.right;
+                }
+
+                // Case 2: sibling's both children are black
+                if (
+                    (!sibling?.left || sibling.left.color === Color.BLACK) &&
+                    (!sibling?.right || sibling.right.color === Color.BLACK)
+                ) {
+                    if (sibling) sibling.color = Color.RED;
+                    x = x.parent;
+                } else {
+                    // Case 3: sibling's right child is black
+                    if (
+                        !sibling?.right ||
+                        sibling.right.color === Color.BLACK
+                    ) {
+                        if (sibling?.left) sibling.left.color = Color.BLACK;
+                        sibling.color = Color.RED;
+                        this.rotateRight(sibling);
+                        sibling = x.parent.right;
+                    }
+
+                    // Case 4: sibling's right child is red
+                    if (sibling) {
+                        sibling.color = x.parent.color;
+                        x.parent.color = Color.BLACK;
+                        if (sibling.right) sibling.right.color = Color.BLACK;
+                        this.rotateLeft(x.parent);
+                        x = this.root;
+                    }
+                }
+            } else {
+                // Mirror cases for right child
+                let sibling = x.parent?.left;
+                if (sibling?.color === Color.RED) {
+                    sibling.color = Color.BLACK;
+                    x.parent!.color = Color.RED;
+                    this.rotateRight(x.parent!);
+                    sibling = x.parent?.left;
+                }
+
+                if (
+                    (!sibling?.right || sibling.right.color === Color.BLACK) &&
+                    (!sibling?.left || sibling.left.color === Color.BLACK)
+                ) {
+                    if (sibling) sibling.color = Color.RED;
+                    x = x.parent;
+                } else {
+                    if (!sibling?.left || sibling.left.color === Color.BLACK) {
+                        if (sibling?.right) sibling.right.color = Color.BLACK;
+                        sibling.color = Color.RED;
+                        this.rotateLeft(sibling);
+                        sibling = x.parent?.left;
+                    }
+
+                    if (sibling) {
+                        sibling.color = x.parent!.color;
+                        x.parent!.color = Color.BLACK;
+                        if (sibling.left) sibling.left.color = Color.BLACK;
+                        this.rotateRight(x.parent!);
+                        x = this.root;
+                    }
+                }
+            }
+        }
+        if (x) x.color = Color.BLACK;
     }
 }
