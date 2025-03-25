@@ -54,30 +54,28 @@ export class PatriciaTree {
         node.children.set(word, newNode);
     }
 
-    search(word: string): PatriciaTreeNode | undefined {
-        const result = this._search(this.root, word);
-        console.log('search1111', word, result);
-        return result;
+    search(word: string): boolean {
+        return this._search(this.root, word);
     }
 
-    private _search(
-        node: PatriciaTreeNode,
-        word: string,
-    ): PatriciaTreeNode | undefined {
+    private _search(node: PatriciaTreeNode, word: string): boolean {
         if (!word) {
-            console.log(node.isEndOfWord ? node : undefined);
-            return node.isEndOfWord ? node : undefined;
+            return node.isEndOfWord;
         }
         for (const [key, childNode] of node.children) {
             const commonPrefix = this.getCommonPrefix(word, key);
             if (commonPrefix.length > 0) {
                 if (commonPrefix < key) {
-                    return;
+                    return false;
                 } else {
-                    this._search(childNode, word.slice(commonPrefix.length));
+                    return this._search(
+                        childNode,
+                        word.slice(commonPrefix.length),
+                    );
                 }
             }
         }
+        return false;
     }
     private getCommonPrefix(word: string, key: string) {
         let common = '';
@@ -97,7 +95,6 @@ export class PatriciaTree {
     private _printTree(node: PatriciaTreeNode, prefix: string) {
         for (const [key, childNode] of node.children) {
             const newPrefix = prefix + key;
-            console.log(newPrefix, childNode);
             if (!childNode.isEndOfWord) {
                 this._printTree(childNode, newPrefix);
             }
