@@ -68,9 +68,3 @@ export class MerkleTree {
         return currentHash === this.merkleRoot;
     }
 }
-
-// 示例数据
-const dataBlocks = ['B', 'M', 'G', 'D', 'A', 'C'];
-const merkle = new MerkleTree(dataBlocks);
-const path = merkle.getPath('G');
-const isValid = merkle.verifyPath('G', path);
